@@ -1,3 +1,3 @@
-FLASK_APP=forms.py
+FLASK_APP=main_app.py
 FLASK_ENV=development
 
