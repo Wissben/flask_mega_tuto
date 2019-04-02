@@ -5,17 +5,29 @@
     {% else %}
         <title>Welcome to Blogpost</title>
     {% endif %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/google_fonts.css') }}">
 </head>
 <body>
 <div>
+
     Blogpost: <a href="{{ url_for('index') }}">Home</a>
     {% if current_user.is_anonymous %}
         <a href="{{ url_for('login') }}">Login</a>
     {% else %}
         <a href="{{ url_for('logout') }}">Logout</a>
+        <a href="{{ url_for('user',username = current_user.username) }}">My profile</a>
     {% endif %}
 </div>
 <hr>
-{% block content %}{% endblock %}
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endwith %}{% block content %}{% endblock %}
 </body>
 </html>

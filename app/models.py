@@ -2,7 +2,8 @@ from app import db,login_manager
 from datetime import datetime
 from werkzeug.security import generate_password_hash,check_password_hash
 from flask_login import UserMixin
-
+from hashlib import md5
+from flask import abort
 
 @login_manager.user_loader
 def load_user(id):
@@ -15,9 +16,8 @@ class User(UserMixin,db.Model):
     email = db.Column(db.String(60), index=True, unique=True)
     pass_hashed = db.Column(db.String(256))
     posts = db.relationship('Post', backref='author', lazy='dynamic')
-    # Need to be checked later
-    # followers = db.relationship('User', backref='follwed_by', lazy='dynamic')
-    # followers_by =
+    about_me = db.Column(db.String(140))
+    last_seen = db.Column(db.DateTime,default=datetime.utcnow)
 
     def __repr__(self):
         return 'User <{}:{}>'.format(self.username, self.id)
@@ -27,6 +27,11 @@ class User(UserMixin,db.Model):
 
     def check_password(self,password):
         return check_password_hash(self.pass_hashed,password)
+
+    def generate_avatar(self,size):
+        hash = md5(self.email.lower().encode('utf-8')).hexdigest()
+        BASE_URL = 'https://www.gravatar.com/avatar/{}?d=identicon&s={}'
+        return BASE_URL.format(hash,size)
 
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)

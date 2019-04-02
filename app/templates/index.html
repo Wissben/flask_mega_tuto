@@ -1,13 +1,8 @@
-<html>
-    <head>
-        <title> {{title}} page</title>
-    </head>
-    <body>
-        <form method=post enctype=multipart/form-data>
-            <input type=file name=file>
-            <input type=submit value=Upload>
-        </form>
-    </body> 
-</html>
-
+{% extends 'base.html' %}
+{% block content %}
+    <h1>Hi, {{ current_user.username }}!</h1>
+    {% for post in posts %}
+    <div><p>{{ post.author.username }} says: <b>{{ post.body }}</b></p></div>
+    {% endfor %}
+{% endblock %}
 
