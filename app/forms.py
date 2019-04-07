@@ -1,4 +1,5 @@
 from flask_wtf import FlaskForm
+from sqlalchemy.sql.functions import current_user
 from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField
 from wtforms.validators import DataRequired, Email, EqualTo, ValidationError, Length
 from app.models import User
@@ -28,7 +29,7 @@ class SignUpForm(FlaskForm):
     def validate_email(self, email):
         user = User.query.filter_by(email=email.data).first()
         if user is not None:
-            raise ValidationError('THe mail already exists')
+            raise ValidationError('The mail already exists')
 
 
 class EditProfileForm(FlaskForm):
@@ -38,7 +39,6 @@ class EditProfileForm(FlaskForm):
 
     def validate_username(self, username):
         user = User.query.filter_by(username=username.data).first()
-        if user is not  None:
-            print('[INFO] : did i miss 222222 ? ')
+        if user is not  None and current_user.username != user.username:
             suggestion = username.data + '_' + str( randrange(0,9999))
             raise ValidationError('The name {} is already taken, try {}'.format(username.data,suggestion))

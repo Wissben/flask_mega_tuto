@@ -155,8 +155,6 @@ def edit_profile(username):
     if form.validate_on_submit():
         current_user.username = form.username.data
         current_user.about_me = form.about_me.data
-        print('[DEBUG] : hers is the form {} '.format(form.username.data))
-        print('[DEBUG] : here is the validator value :' , form.validate_username(form.username))
         db.session.commit()
         flash('Changes saved !')
         return redirect(url_for('user',username=form.username.data))
