@@ -7,8 +7,9 @@
                 <img src="{{ user.generate_avatar(128) }}">
             </td>
             <td>
-                <h1>{{ user.username  }}</h1>
-                {% if user.about_me  %}
+                <h1>{{ user.username }}</h1>
+
+                {% if user.about_me %}
                     <p>{{ user.about_me }}</p>
                 {% endif %}
                 {% if user.last_seen %}
@@ -16,9 +17,13 @@
                 {% endif %}
                 {% if user == current_user %}
                     <p><a href="{{ url_for('edit_profile',username =user.username) }}"> Edit my profile</a></p>
+                {% elif not current_user.is_following(user) %}
+                    <p><a href="{{ url_for('follow', username=user.username) }}">Follow</a></p>
+                {% else %}
+                    <p><a href="{{ url_for('unfollow', username=user.username) }}">Unfollow</a></p>
                 {% endif %}
             </td>
-            
+
         </tr>
     </table>
     <hr>

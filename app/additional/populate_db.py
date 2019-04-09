@@ -6,7 +6,7 @@ from random import randrange
 User.query.delete()
 users = User.query.all()
 start = 0
-if len(users)>0:
+if users:
     start = users[-1].id
 
 for i in range(start,start+150):

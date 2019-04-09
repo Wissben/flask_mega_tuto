@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <main>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit molestiae itaque facere totam saepe tempore
+            esse temporibus, quae reprehenderit aliquid iusto ea laborum, iure eligendi odio exercitationem sapiente
+            illum
+            quos.</p>
+
+        <p>
+            <button id="btnStart">START RECORDING</button>
+            <br/>
+            <button id="btnStop">STOP RECORDING</button>
+        </p>
+
+        <audio controls hidden></audio>
+
+        <!-- could save to canvas and do image manipulation and saving too -->
+    </main>
+    <script>
+        let constraintObj = {
+            audio: true,
+            video: false
+        };
+        {##}
+        {#if (navigator.mediaDevices === undefined) {#}
+        {#    navigator.mediaDevices = {};#}
+        {#    navigator.mediaDevices.getUserMedia = constraintObj => {#}
+        {#        let getUserMedia = navigator.webkitGetUserMedia || navigator.mozGetUserMedia#}
+        {#        if (!getUserMedia) {#}
+        {#            return Promise.reject(new Error('[ERROR] : getUserMedia not found'));#}
+        {#        }#}
+        {#        return new Promise((resolve, reject) => {#}
+        {#            getUserMedia.call(navigator, constraintObj, resolve, reject);#}
+        {#        });#}
+        {#    }#}
+        {#}#}
+            {#else {#}
+            {#    navigator.mediaDevices.enumerateDevices().then(#}
+            {#        (devices) => {#}
+            {#            devices.forEach(#}
+            {#                (device) =>#}
+            {#                    console.log(device.kind.toUpperCase(), device.label)#}
+            {#            )#}
+            {#        }#}
+            {#    ).catch(err => {#}
+            {#            console.error(err.name, err.message);#}
+            {#        }#}
+            {#    )#}
+            {#}#}
+
+                navigator.mediaDevices.getUserMedia(constraintObj).then(mediaStreamObj => {
+                    let audio = document.querySelector('audio');
+                    if ('srcObject' in audio) {
+                        audio.srcObject = mediaStreamObj;
+                    }
+                    else {
+                        audio.src = window.URL.createObjectURL(mediaStreamObj);
+                    }
+                    audio.onloadedmetadata = (ev) => {
+                        audio.play();
+                    };
+                    let start = document.getElementById('btnStart');
+                    let stop = document.getElementById('btnStop');
+                    let mediaRecorder = new MediaRecorder(mediaStreamObj)
+                    console.debug(mediaStreamObj);
+                    let chunks = 0;
+                    let CONNECTION_PORT = 'http://localhost:5000'
+                    let socket = io.connect(CONNECTION_PORT);
+
+                    socket.on('recieve', function (msg) {
+                        console.log('RECIEVED : ', msg);
+                        $('#data').html(msg.proba)
+                    });
+
+                    start.addEventListener("click", (ev) => {
+                        mediaRecorder.start(1000);
+                        console.log('STARTED RECORDING with state : ', mediaRecorder.state);
+                    });
+
+                    stop.addEventListener("click", (ev) => {
+                        mediaRecorder.stop();
+                        console.log('STOPPED RECORDING with state : ', mediaRecorder.state);
+                    });
+
+                    mediaRecorder.ondataavailable = (ev) => {
+                        //console.log("CURRENT DATA : ", ev.data)
+                        socket.emit('json', ev.data);
+                        chunks = ev.data;
+                    };
+
+                    mediaRecorder.onstop = (ev) => {
+                        {#let blob = new Blob(chunks,{'type':'audio/wav'});#}
+                        chunks = 0;
+                        console.log('FULL STOP');
+                    }
+
+                }).catch((err) => {
+                    console.log(err.name, err.message);
+                })
+    </script>
+    <div id="data"></div>
+{% endblock %}

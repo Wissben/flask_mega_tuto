@@ -47,7 +47,7 @@ class User(UserMixin, db.Model):
         BASE_URL = 'https://www.gravatar.com/avatar/{}?d=identicon&s={}'
         return BASE_URL.format(hash, size)
 
-    def follower(self, user):
+    def follow(self, user):
         if not user is self and not self.is_following(user):
             self.followed.append(user)
 
@@ -58,7 +58,11 @@ class User(UserMixin, db.Model):
     def is_following(self, user):
         return self.followed.filter(followers.c.followed_id == user.id).count() > 0
 
-    def generate_post_feed(self):
+    def post_feed(self):
+        """
+        Method to retrieve the posts of all users followed by the current user (including himself)
+        :return: list of posts
+        """
         others = Post.query.join(
             followers, (followers.c.followed_id == Post.user)
         ).filter(
@@ -69,7 +73,7 @@ class User(UserMixin, db.Model):
 
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    content = db.Column(db.String(140), nullable=False)
+    content = db.Column(db.String(140))
     date = db.Column(db.DateTime, default=datetime.utcnow, index=True)
     user = db.Column(db.Integer, db.ForeignKey('user.id'))
 

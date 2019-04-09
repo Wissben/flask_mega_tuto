@@ -1,18 +1,19 @@
-from dominate.tags import title
-
-from app import app, db
-from app.forms import LoginForm, SignUpForm,EditProfileForm
-from app.config import APP_STATIC
-from app.models import User, Post
-from flask import flash, jsonify, render_template, request, abort, redirect, url_for, Response
-from time import sleep
-from flask_login import current_user, login_user, logout_user, login_required
-from werkzeug.urls import url_parse
-from datetime import datetime
-
 import os
 import random
 import wave
+from datetime import datetime
+from time import sleep
+
+from flask import flash, jsonify, render_template, request, redirect, url_for, Response
+from flask_login import current_user, login_user, logout_user, login_required
+from flask_socketio import emit
+from werkzeug.urls import url_parse
+
+from app import app, db
+from app import socketio
+from app.config import APP_STATIC
+from app.forms import LoginForm, SignUpForm, EditProfileForm, PostForm
+from app.models import User, Post
 
 AUTHORIZED_EXTENSIONS = ['wav', 'mp3']
 app.config['UPLOAD_FOLDER'] = os.path.join(APP_STATIC)
@@ -20,11 +21,20 @@ PROBAS = []
 DATA = []
 
 
-@app.route('/')
-@app.route('/index')
+@app.route('/', methods=['GET', 'POST'])
+@app.route('/index', methods=['GET', 'POST'])
 @login_required
 def index():
-    return render_template('index.html')
+    form = PostForm()
+    if form.validate_on_submit():
+        post = Post(content=form.post.data, author=current_user)
+        print('CURRENT POST ',form.post.data)
+        db.session.add(post)
+        db.session.commit()
+        flash('Your post has been added')
+        return redirect(url_for('index'))
+    posts = current_user.post_feed().all()
+    return render_template('index.html', form=form, posts=posts)
 
 
 @app.route('/upload_file')
@@ -148,7 +158,8 @@ def before_request():
         current_user.last_seen = datetime.utcnow().astimezone()
         db.session.commit()
 
-@app.route('/user/<string:username>/edit',methods=['GET','POST'])
+
+@app.route('/user/<string:username>/edit', methods=['GET', 'POST'])
 @login_required
 def edit_profile(username):
     form = EditProfileForm()
@@ -157,12 +168,43 @@ def edit_profile(username):
         current_user.about_me = form.about_me.data
         db.session.commit()
         flash('Changes saved !')
-        return redirect(url_for('user',username=form.username.data))
-    if request.method== 'GET':
+        return redirect(url_for('user', username=form.username.data))
+    if request.method == 'GET':
         form.username.data = current_user.username
         form.about_me.data = current_user.about_me
-    return render_template('edit_profile.html',title = 'Edit profile',form=form)
+    return render_template('edit_profile.html', title='Edit profile', form=form)
 
+
+@app.route('/follow/<string:username>')
+@login_required
+def follow(username):
+    user = User.query.filter_by(username=username).first()
+    if user is None:
+        flash('The user {} does not exists'.format(username))
+        return redirect(url_for('index'))
+    if user == current_user:
+        flash('You cannot follow yourself !')
+        return redirect(url_for('index'))
+    current_user.follow(user)
+    db.session.commit()
+    flash('You are now following {}, best of wishes'.format(username))
+    return redirect(url_for('user', username=username))
+
+
+@app.route('/unfollow/<string:username>')
+@login_required
+def unfollow(username):
+    user = User.query.filter_by(username=username).first()
+    if user is None:
+        flash('The user {} does not exists'.format(username))
+        return redirect(url_for('index'))
+    if user == current_user:
+        flash('You cannot follow yourself !')
+        return redirect(url_for('index'))
+    current_user.unfollow(user)
+    db.session.commit()
+    flash('Sadly you just lost {} as a friend '.format(username))
+    return redirect(url_for('user', username=username))
 
 
 def gen(wave_file):
@@ -194,6 +236,18 @@ def video_feed(filename):
     Route for itterating over an audio file and send it to a parsing function
     '''
     wave_file = wave.open(os.path.join(APP_STATIC, filename), 'r')
-    print("SOMETHING")
     file_probas = gen(wave_file)
     return Response(stream_template('realtime.html', probas=file_probas))
+
+
+@app.route('/live_audio')
+@login_required
+def live_audio_feed():
+    return render_template('live_audio_stream.html')
+
+
+#
+@socketio.on('json')
+def handle_message(json):
+    print('[INFO] : recieved chunk of data : ', str(json))
+    emit('recieve', {'proba': random.random()})

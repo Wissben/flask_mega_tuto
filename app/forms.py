@@ -42,3 +42,8 @@ class EditProfileForm(FlaskForm):
         if user is not  None and current_user.username != user.username:
             suggestion = username.data + '_' + str( randrange(0,9999))
             raise ValidationError('The name {} is already taken, try {}'.format(username.data,suggestion))
+
+class PostForm(FlaskForm):
+    post = TextAreaField('Post',validators=[Length(min=0,max=140)])
+    submit = SubmitField()
+

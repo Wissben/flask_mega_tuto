@@ -1,5 +1,62 @@
-2019-04-07 10:47:13,777 INFO: The application started [in /home/weiss/CODES/BM/intent_gatherer/flask_backend/app/__init__.py:42]
-2019-04-07 13:09:27,166 INFO: The application started [in /home/weiss/CODES/BM/intent_gatherer/flask_backend/app/__init__.py:41]
-2019-04-07 13:10:00,094 INFO: The application started [in /home/weiss/CODES/BM/intent_gatherer/flask_backend/app/__init__.py:41]
-2019-04-07 13:15:48,501 INFO: The application started [in /home/weiss/CODES/BM/intent_gatherer/flask_backend/app/__init__.py:41]
-2019-04-07 13:16:01,968 INFO: The application started [in /home/weiss/CODES/BM/intent_gatherer/flask_backend/app/__init__.py:41]
+2019-04-09 16:52:40,705 ERROR: Exception on /unfollow/user_88 [GET] [in /home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py:1761]
+Traceback (most recent call last):
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/sqlalchemy/orm/attributes.py", line 221, in __getattr__
+    return getattr(self.comparator, key)
+AttributeError: 'Comparator' object has no attribute 'filter_by'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask_login/utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "/home/weiss/CODES/BM/intent_gatherer/flask_backend/app/routes.py", line 196, in unfollow
+    user = User.followed.filter_by(username=username).first()
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/sqlalchemy/orm/attributes.py", line 230, in __getattr__
+    key,
+AttributeError: Neither 'InstrumentedAttribute' object nor 'Comparator' object associated with User.followed has an attribute 'filter_by'
+2019-04-09 16:52:40,712 ERROR: Internal error, please wait until the maintainers fix the issue [in /home/weiss/CODES/BM/intent_gatherer/flask_backend/app/errors.py:13]
+2019-04-09 16:55:33,216 INFO: The application started [in /home/weiss/CODES/BM/intent_gatherer/flask_backend/app/__init__.py:44]
+2019-04-09 16:55:37,003 ERROR: Exception on /unfollow/user_88 [GET] [in /home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py:1761]
+Traceback (most recent call last):
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask_login/utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "/home/weiss/CODES/BM/intent_gatherer/flask_backend/app/routes.py", line 204, in unfollow
+    current_user.unofllow(user)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/werkzeug/local.py", line 348, in __getattr__
+    return getattr(self._get_current_object(), name)
+AttributeError: 'User' object has no attribute 'unofllow'
+2019-04-09 16:55:37,028 ERROR: Internal error, please wait until the maintainers fix the issue [in /home/weiss/CODES/BM/intent_gatherer/flask_backend/app/errors.py:13]
+2019-04-09 16:59:25,735 INFO: The application started [in /home/weiss/CODES/BM/intent_gatherer/flask_backend/app/__init__.py:44]
+2019-04-09 17:00:09,662 ERROR: 404 not found [in /home/weiss/CODES/BM/intent_gatherer/flask_backend/app/errors.py:8]
+2019-04-09 17:12:16,167 INFO: The application started [in /home/weiss/CODES/BM/intent_gatherer/flask_backend/app/__init__.py:44]
+2019-04-09 17:13:17,041 INFO: The application started [in /home/weiss/CODES/BM/intent_gatherer/flask_backend/app/__init__.py:44]
+2019-04-09 17:15:20,548 INFO: The application started [in /home/weiss/CODES/BM/intent_gatherer/flask_backend/app/__init__.py:44]
+2019-04-09 17:15:47,166 INFO: The application started [in /home/weiss/CODES/BM/intent_gatherer/flask_backend/app/__init__.py:44]
+2019-04-09 17:16:01,153 INFO: The application started [in /home/weiss/CODES/BM/intent_gatherer/flask_backend/app/__init__.py:44]
+2019-04-09 17:22:55,517 INFO: The application started [in /home/weiss/CODES/BM/intent_gatherer/flask_backend/app/__init__.py:44]
+2019-04-09 17:23:53,263 INFO: The application started [in /home/weiss/CODES/BM/intent_gatherer/flask_backend/app/__init__.py:44]
+2019-04-09 17:24:12,341 ERROR: 404 not found [in /home/weiss/CODES/BM/intent_gatherer/flask_backend/app/errors.py:8]
