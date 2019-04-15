@@ -47,3 +47,12 @@ class PostForm(FlaskForm):
     post = TextAreaField('Post',validators=[Length(min=0,max=140)])
     submit = SubmitField()
 
+class RequestNewPassWordForm(FlaskForm):
+    email = StringField('Email',validators=[DataRequired(),Email()])
+    submit = SubmitField('Request new password')
+
+class ResetPasswordForm(FlaskForm):
+    password = PasswordField('Password',validators=[DataRequired()])
+    password_confirmation = PasswordField('Password confirmation',validators=[DataRequired(),EqualTo('password')])
+    submit = SubmitField('Save new password')
+

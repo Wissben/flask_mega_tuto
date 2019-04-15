@@ -1,0 +1,225 @@
+2019-04-14 12:38:21,955 ERROR: Exception on /reset_pass [POST] [in /home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py:1761]
+Traceback (most recent call last):
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/weiss/CODES/BM/intent_gatherer/flask_backend/app/routes.py", line 145, in reset_password
+    send_password_reset_email(user)
+  File "/home/weiss/CODES/BM/intent_gatherer/flask_backend/app/email.py", line 17, in send_password_reset_email
+    text_body=render_template('reset_pass_mail_text.txt',user=user,token=token))
+  File "/home/weiss/CODES/BM/intent_gatherer/flask_backend/app/email.py", line 8, in send_mail
+    mail.send(message)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask_mail.py", line 491, in send
+    with self.connect() as connection:
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask_mail.py", line 144, in __enter__
+    self.host = self.configure_host()
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask_mail.py", line 165, in configure_host
+    host.login(self.mail.username, self.mail.password)
+  File "/home/weiss/miniconda3/lib/python3.7/smtplib.py", line 730, in login
+    raise last_exception
+  File "/home/weiss/miniconda3/lib/python3.7/smtplib.py", line 721, in login
+    initial_response_ok=initial_response_ok)
+  File "/home/weiss/miniconda3/lib/python3.7/smtplib.py", line 642, in auth
+    raise SMTPAuthenticationError(code, resp)
+smtplib.SMTPAuthenticationError: (534, b'5.7.9 Application-specific password required. Learn more at\n5.7.9  https://support.google.com/mail/?p=InvalidSecondFactor l20sm12635390wme.20 - gsmtp')
+2019-04-14 12:38:21,962 ERROR: Internal error, please wait until the maintainers fix the issue [in /home/weiss/CODES/BM/intent_gatherer/flask_backend/app/errors.py:13]
+2019-04-14 12:40:19,485 INFO: The application started [in /home/weiss/CODES/BM/intent_gatherer/flask_backend/app/__init__.py:44]
+2019-04-14 12:40:23,248 ERROR: Exception on /reset_pass [POST] [in /home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py:1761]
+Traceback (most recent call last):
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/weiss/CODES/BM/intent_gatherer/flask_backend/app/routes.py", line 145, in reset_password
+    send_password_reset_email(user)
+  File "/home/weiss/CODES/BM/intent_gatherer/flask_backend/app/email.py", line 17, in send_password_reset_email
+    text_body=render_template('reset_pass_mail_text.txt',user=user,token=token))
+  File "/home/weiss/CODES/BM/intent_gatherer/flask_backend/app/email.py", line 8, in send_mail
+    mail.send(message)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask_mail.py", line 491, in send
+    with self.connect() as connection:
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask_mail.py", line 144, in __enter__
+    self.host = self.configure_host()
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask_mail.py", line 165, in configure_host
+    host.login(self.mail.username, self.mail.password)
+  File "/home/weiss/miniconda3/lib/python3.7/smtplib.py", line 730, in login
+    raise last_exception
+  File "/home/weiss/miniconda3/lib/python3.7/smtplib.py", line 721, in login
+    initial_response_ok=initial_response_ok)
+  File "/home/weiss/miniconda3/lib/python3.7/smtplib.py", line 642, in auth
+    raise SMTPAuthenticationError(code, resp)
+smtplib.SMTPAuthenticationError: (534, b'5.7.9 Application-specific password required. Learn more at\n5.7.9  https://support.google.com/mail/?p=InvalidSecondFactor u17sm26935873wmu.36 - gsmtp')
+2019-04-14 12:40:23,252 ERROR: Internal error, please wait until the maintainers fix the issue [in /home/weiss/CODES/BM/intent_gatherer/flask_backend/app/errors.py:13]
+2019-04-14 12:40:46,687 INFO: The application started [in /home/weiss/CODES/BM/intent_gatherer/flask_backend/app/__init__.py:44]
+2019-04-14 12:41:00,879 ERROR: Exception on /reset_pass [POST] [in /home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py:1761]
+Traceback (most recent call last):
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/weiss/CODES/BM/intent_gatherer/flask_backend/app/routes.py", line 145, in reset_password
+    send_password_reset_email(user)
+  File "/home/weiss/CODES/BM/intent_gatherer/flask_backend/app/email.py", line 17, in send_password_reset_email
+    text_body=render_template('reset_pass_mail_text.txt',user=user,token=token))
+  File "/home/weiss/CODES/BM/intent_gatherer/flask_backend/app/email.py", line 8, in send_mail
+    mail.send(message)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask_mail.py", line 491, in send
+    with self.connect() as connection:
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask_mail.py", line 144, in __enter__
+    self.host = self.configure_host()
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask_mail.py", line 158, in configure_host
+    host = smtplib.SMTP(self.mail.server, self.mail.port)
+  File "/home/weiss/miniconda3/lib/python3.7/smtplib.py", line 251, in __init__
+    (code, msg) = self.connect(host, port)
+  File "/home/weiss/miniconda3/lib/python3.7/smtplib.py", line 338, in connect
+    (code, msg) = self.getreply()
+  File "/home/weiss/miniconda3/lib/python3.7/smtplib.py", line 394, in getreply
+    raise SMTPServerDisconnected("Connection unexpectedly closed")
+smtplib.SMTPServerDisconnected: Connection unexpectedly closed
+2019-04-14 12:41:00,883 ERROR: Internal error, please wait until the maintainers fix the issue [in /home/weiss/CODES/BM/intent_gatherer/flask_backend/app/errors.py:13]
+2019-04-14 12:45:12,840 INFO: The application started [in /home/weiss/CODES/BM/intent_gatherer/flask_backend/app/__init__.py:44]
+2019-04-14 12:45:17,636 ERROR: Exception on /reset_pass [POST] [in /home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py:1761]
+Traceback (most recent call last):
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/weiss/CODES/BM/intent_gatherer/flask_backend/app/routes.py", line 145, in reset_password
+    send_password_reset_email(user)
+  File "/home/weiss/CODES/BM/intent_gatherer/flask_backend/app/email.py", line 17, in send_password_reset_email
+    text_body=render_template('reset_pass_mail_text.txt',user=user,token=token))
+  File "/home/weiss/CODES/BM/intent_gatherer/flask_backend/app/email.py", line 8, in send_mail
+    mail.send(message)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask_mail.py", line 492, in send
+    message.send(connection)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask_mail.py", line 427, in send
+    connection.send(self)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask_mail.py", line 178, in send
+    "The message does not specify a sender and a default sender "
+AssertionError: The message does not specify a sender and a default sender has not been configured
+2019-04-14 12:45:17,640 ERROR: Internal error, please wait until the maintainers fix the issue [in /home/weiss/CODES/BM/intent_gatherer/flask_backend/app/errors.py:13]
+2019-04-14 12:45:28,870 ERROR: Exception on /reset_pass [POST] [in /home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py:1761]
+Traceback (most recent call last):
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/weiss/CODES/BM/intent_gatherer/flask_backend/app/routes.py", line 145, in reset_password
+    send_password_reset_email(user)
+  File "/home/weiss/CODES/BM/intent_gatherer/flask_backend/app/email.py", line 17, in send_password_reset_email
+    text_body=render_template('reset_pass_mail_text.txt',user=user,token=token))
+  File "/home/weiss/CODES/BM/intent_gatherer/flask_backend/app/email.py", line 8, in send_mail
+    mail.send(message)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask_mail.py", line 492, in send
+    message.send(connection)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask_mail.py", line 427, in send
+    connection.send(self)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask_mail.py", line 178, in send
+    "The message does not specify a sender and a default sender "
+AssertionError: The message does not specify a sender and a default sender has not been configured
+2019-04-14 12:45:28,874 ERROR: Internal error, please wait until the maintainers fix the issue [in /home/weiss/CODES/BM/intent_gatherer/flask_backend/app/errors.py:13]
+2019-04-14 12:46:09,758 INFO: The application started [in /home/weiss/CODES/BM/intent_gatherer/flask_backend/app/__init__.py:44]
+2019-04-14 12:46:13,080 ERROR: Exception on /reset_pass [POST] [in /home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py:1761]
+Traceback (most recent call last):
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/weiss/CODES/BM/intent_gatherer/flask_backend/app/routes.py", line 145, in reset_password
+    send_password_reset_email(user)
+  File "/home/weiss/CODES/BM/intent_gatherer/flask_backend/app/email.py", line 17, in send_password_reset_email
+    text_body=render_template('reset_pass_mail_text.txt',user=user,token=token))
+  File "/home/weiss/CODES/BM/intent_gatherer/flask_backend/app/email.py", line 8, in send_mail
+    mail.send(message)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask_mail.py", line 492, in send
+    message.send(connection)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask_mail.py", line 427, in send
+    connection.send(self)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask_mail.py", line 178, in send
+    "The message does not specify a sender and a default sender "
+AssertionError: The message does not specify a sender and a default sender has not been configured
+2019-04-14 12:46:13,086 ERROR: Internal error, please wait until the maintainers fix the issue [in /home/weiss/CODES/BM/intent_gatherer/flask_backend/app/errors.py:13]
+2019-04-14 12:47:48,504 INFO: The application started [in /home/weiss/CODES/BM/intent_gatherer/flask_backend/app/__init__.py:44]
+2019-04-14 12:47:52,174 ERROR: Exception on /reset_pass [POST] [in /home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py:1761]
+Traceback (most recent call last):
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/weiss/CODES/BM/intent_gatherer/flask_backend/app/routes.py", line 145, in reset_password
+    send_password_reset_email(user)
+  File "/home/weiss/CODES/BM/intent_gatherer/flask_backend/app/email.py", line 18, in send_password_reset_email
+    text_body=render_template('reset_pass_mail_text.txt',user=user,token=token))
+  File "/home/weiss/CODES/BM/intent_gatherer/flask_backend/app/email.py", line 8, in send_mail
+    mail.send(message)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask_mail.py", line 492, in send
+    message.send(connection)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask_mail.py", line 427, in send
+    connection.send(self)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask_mail.py", line 178, in send
+    "The message does not specify a sender and a default sender "
+AssertionError: The message does not specify a sender and a default sender has not been configured
+2019-04-14 12:47:52,178 ERROR: Internal error, please wait until the maintainers fix the issue [in /home/weiss/CODES/BM/intent_gatherer/flask_backend/app/errors.py:13]
+2019-04-14 12:48:13,862 INFO: The application started [in /home/weiss/CODES/BM/intent_gatherer/flask_backend/app/__init__.py:44]
+2019-04-14 12:54:36,321 INFO: The application started [in /home/weiss/CODES/BM/intent_gatherer/flask_backend/app/__init__.py:44]
+2019-04-14 12:55:17,362 INFO: The application started [in /home/weiss/CODES/BM/intent_gatherer/flask_backend/app/__init__.py:44]
+2019-04-14 12:55:24,742 INFO: The application started [in /home/weiss/CODES/BM/intent_gatherer/flask_backend/app/__init__.py:44]
+2019-04-14 12:56:13,729 INFO: The application started [in /home/weiss/CODES/BM/intent_gatherer/flask_backend/app/__init__.py:44]
+2019-04-14 12:56:17,912 ERROR: 404 not found [in /home/weiss/CODES/BM/intent_gatherer/flask_backend/app/errors.py:8]

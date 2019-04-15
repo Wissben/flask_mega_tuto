@@ -1,0 +1,179 @@
+2019-04-14 10:47:02,290 ERROR: Exception on /global_news_feed [GET] [in /home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py:1761]
+Traceback (most recent call last):
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask_login/utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "/home/weiss/CODES/BM/intent_gatherer/flask_backend/app/routes.py", line 44, in global_news_feed
+    return render_template(url_for('index'))
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/templating.py", line 134, in render_template
+    return _render(ctx.app.jinja_env.get_or_select_template(template_name_or_list),
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/jinja2/environment.py", line 869, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/jinja2/environment.py", line 830, in get_template
+    return self._load_template(name, self.make_globals(globals))
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/jinja2/environment.py", line 804, in _load_template
+    template = self.loader.load(self, name, globals)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/jinja2/loaders.py", line 113, in load
+    source, filename, uptodate = self.get_source(environment, name)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/templating.py", line 58, in get_source
+    return self._get_source_fast(environment, template)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/templating.py", line 83, in _get_source_fast
+    return loader.get_source(environment, template)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/jinja2/loaders.py", line 171, in get_source
+    f = open_if_exists(filename)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/jinja2/utils.py", line 154, in open_if_exists
+    return open(filename, mode)
+OSError: [Errno 36] File name too long: '/home/weiss/CODES/BM/intent_gatherer/flask_backend/app/templates/index?posts=Post+%3C9%3A2019-04-14+08%3A02%3A09.768896%3E&posts=Post+%3C9%3A2019-04-14+08%3A01%3A22.054643%3E&posts=Post+%3C6%3A2019-04-14+08%3A00%3A18.690861%3E&posts=Post+%3C6%3A2019-04-14+07%3A58%3A46.746483%3E&posts=Post+%3C6%3A2019-04-14+07%3A57%3A55.055820%3E&posts=Post+%3C6%3A2019-04-14+07%3A56%3A37.481431%3E&posts=Post+%3C6%3A2019-04-14+07%3A55%3A52.133598%3E&posts=Post+%3C6%3A2019-04-14+07%3A53%3A19.700542%3E&posts=Post+%3C6%3A2019-04-09+15%3A23%3A58.907414%3E'
+2019-04-14 10:47:02,294 ERROR: Internal error, please wait until the maintainers fix the issue [in /home/weiss/CODES/BM/intent_gatherer/flask_backend/app/errors.py:13]
+2019-04-14 10:48:31,616 ERROR: Exception on /global_news_feed [GET] [in /home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py:1761]
+Traceback (most recent call last):
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask_login/utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "/home/weiss/CODES/BM/intent_gatherer/flask_backend/app/routes.py", line 44, in global_news_feed
+    return render_template('index.html',posts = all_posts)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/templating.py", line 134, in render_template
+    return _render(ctx.app.jinja_env.get_or_select_template(template_name_or_list),
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/jinja2/environment.py", line 869, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/jinja2/environment.py", line 830, in get_template
+    return self._load_template(name, self.make_globals(globals))
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/jinja2/environment.py", line 804, in _load_template
+    template = self.loader.load(self, name, globals)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/jinja2/loaders.py", line 113, in load
+    source, filename, uptodate = self.get_source(environment, name)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/templating.py", line 58, in get_source
+    return self._get_source_fast(environment, template)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/templating.py", line 83, in _get_source_fast
+    return loader.get_source(environment, template)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/jinja2/loaders.py", line 171, in get_source
+    f = open_if_exists(filename)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/jinja2/utils.py", line 154, in open_if_exists
+    return open(filename, mode)
+OSError: [Errno 36] File name too long: '/home/weiss/CODES/BM/intent_gatherer/flask_backend/app/templates/index?posts=Post+%3C9%3A2019-04-14+08%3A47%3A40.506066%3E&posts=Post+%3C6%3A2019-04-14+08%3A47%3A28.966472%3E&posts=Post+%3C9%3A2019-04-14+08%3A02%3A09.768896%3E&posts=Post+%3C9%3A2019-04-14+08%3A01%3A22.054643%3E&posts=Post+%3C6%3A2019-04-14+08%3A00%3A18.690861%3E&posts=Post+%3C6%3A2019-04-14+07%3A58%3A46.746483%3E&posts=Post+%3C6%3A2019-04-14+07%3A57%3A55.055820%3E&posts=Post+%3C6%3A2019-04-14+07%3A56%3A37.481431%3E&posts=Post+%3C6%3A2019-04-14+07%3A55%3A52.133598%3E&posts=Post+%3C6%3A2019-04-14+07%3A53%3A19.700542%3E&posts=Post+%3C6%3A2019-04-09+15%3A23%3A58.907414%3E'
+2019-04-14 10:48:31,619 ERROR: Internal error, please wait until the maintainers fix the issue [in /home/weiss/CODES/BM/intent_gatherer/flask_backend/app/errors.py:13]
+2019-04-14 10:48:42,669 ERROR: Exception on /global_news_feed [GET] [in /home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py:1761]
+Traceback (most recent call last):
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask_login/utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "/home/weiss/CODES/BM/intent_gatherer/flask_backend/app/routes.py", line 44, in global_news_feed
+    return render_template('index.html',posts = all_posts)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/templating.py", line 134, in render_template
+    return _render(ctx.app.jinja_env.get_or_select_template(template_name_or_list),
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/jinja2/environment.py", line 869, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/jinja2/environment.py", line 830, in get_template
+    return self._load_template(name, self.make_globals(globals))
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/jinja2/environment.py", line 804, in _load_template
+    template = self.loader.load(self, name, globals)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/jinja2/loaders.py", line 113, in load
+    source, filename, uptodate = self.get_source(environment, name)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/templating.py", line 58, in get_source
+    return self._get_source_fast(environment, template)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/templating.py", line 83, in _get_source_fast
+    return loader.get_source(environment, template)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/jinja2/loaders.py", line 171, in get_source
+    f = open_if_exists(filename)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/jinja2/utils.py", line 154, in open_if_exists
+    return open(filename, mode)
+OSError: [Errno 36] File name too long: '/home/weiss/CODES/BM/intent_gatherer/flask_backend/app/templates/index?posts=Post+%3C9%3A2019-04-14+08%3A47%3A40.506066%3E&posts=Post+%3C6%3A2019-04-14+08%3A47%3A28.966472%3E&posts=Post+%3C9%3A2019-04-14+08%3A02%3A09.768896%3E&posts=Post+%3C9%3A2019-04-14+08%3A01%3A22.054643%3E&posts=Post+%3C6%3A2019-04-14+08%3A00%3A18.690861%3E&posts=Post+%3C6%3A2019-04-14+07%3A58%3A46.746483%3E&posts=Post+%3C6%3A2019-04-14+07%3A57%3A55.055820%3E&posts=Post+%3C6%3A2019-04-14+07%3A56%3A37.481431%3E&posts=Post+%3C6%3A2019-04-14+07%3A55%3A52.133598%3E&posts=Post+%3C6%3A2019-04-14+07%3A53%3A19.700542%3E&posts=Post+%3C6%3A2019-04-09+15%3A23%3A58.907414%3E'
+2019-04-14 10:48:42,670 ERROR: Internal error, please wait until the maintainers fix the issue [in /home/weiss/CODES/BM/intent_gatherer/flask_backend/app/errors.py:13]
+2019-04-14 10:49:13,928 ERROR: 404 not found [in /home/weiss/CODES/BM/intent_gatherer/flask_backend/app/errors.py:8]
+2019-04-14 10:49:21,525 INFO: The application started [in /home/weiss/CODES/BM/intent_gatherer/flask_backend/app/__init__.py:44]
+2019-04-14 10:56:28,458 INFO: The application started [in /home/weiss/CODES/BM/intent_gatherer/flask_backend/app/__init__.py:44]
+2019-04-14 10:56:33,810 ERROR: Exception on /explore [GET] [in /home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py:1761]
+Traceback (most recent call last):
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask_login/utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "/home/weiss/CODES/BM/intent_gatherer/flask_backend/app/routes.py", line 44, in explore
+    page = request.args('page', 1, type=int)
+TypeError: 'ImmutableMultiDict' object is not callable
+2019-04-14 10:56:33,814 ERROR: Internal error, please wait until the maintainers fix the issue [in /home/weiss/CODES/BM/intent_gatherer/flask_backend/app/errors.py:13]
+2019-04-14 10:57:19,355 ERROR: Exception on /explore [GET] [in /home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py:1761]
+Traceback (most recent call last):
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask_login/utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "/home/weiss/CODES/BM/intent_gatherer/flask_backend/app/routes.py", line 44, in explore
+    page = request.args.get('page', 1, type=int)
+TypeError: 'ImmutableMultiDict' object is not callable
+2019-04-14 10:57:19,357 ERROR: Internal error, please wait until the maintainers fix the issue [in /home/weiss/CODES/BM/intent_gatherer/flask_backend/app/errors.py:13]
+2019-04-14 10:57:23,271 INFO: The application started [in /home/weiss/CODES/BM/intent_gatherer/flask_backend/app/__init__.py:44]
+2019-04-14 11:11:54,441 INFO: The application started [in /home/weiss/CODES/BM/intent_gatherer/flask_backend/app/__init__.py:44]
+2019-04-14 11:11:58,507 ERROR: Exception on /explore [GET] [in /home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py:1761]
+Traceback (most recent call last):
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask_login/utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "/home/weiss/CODES/BM/intent_gatherer/flask_backend/app/routes.py", line 48, in explore
+    next_url = url_for('index', page=page.next_num) if page.has_next else None
+AttributeError: 'int' object has no attribute 'has_next'
+2019-04-14 11:11:58,510 ERROR: Internal error, please wait until the maintainers fix the issue [in /home/weiss/CODES/BM/intent_gatherer/flask_backend/app/errors.py:13]

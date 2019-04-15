@@ -3,17 +3,24 @@ import random
 import wave
 from datetime import datetime
 from time import sleep
-
+import numpy as np
 from flask import flash, jsonify, render_template, request, redirect, url_for, Response
+from flask import g
+from flask_babel import get_locale
 from flask_login import current_user, login_user, logout_user, login_required
 from flask_socketio import emit
+from guess_language import guess_language
 from werkzeug.urls import url_parse
 
 from app import app, db
 from app import socketio
 from app.config import APP_STATIC
-from app.forms import LoginForm, SignUpForm, EditProfileForm, PostForm
+from app.email import send_password_reset_email
+from app.forms import LoginForm, SignUpForm, EditProfileForm, PostForm, RequestNewPassWordForm, ResetPasswordForm
 from app.models import User, Post
+
+from librosa.feature import mfcc
+
 
 AUTHORIZED_EXTENSIONS = ['wav', 'mp3']
 app.config['UPLOAD_FOLDER'] = os.path.join(APP_STATIC)
@@ -27,14 +34,31 @@ DATA = []
 def index():
     form = PostForm()
     if form.validate_on_submit():
-        post = Post(content=form.post.data, author=current_user)
-        print('CURRENT POST ',form.post.data)
+        language = guess_language(form.post.data)
+        if language == 'UNKKNOWN' or len(language) > 5:
+            language = ''
+        post = Post(content=form.post.data, author=current_user, language=language)
+        print('CURRENT POST ', form.post.data)
         db.session.add(post)
         db.session.commit()
         flash('Your post has been added')
         return redirect(url_for('index'))
-    posts = current_user.post_feed().all()
-    return render_template('index.html', form=form, posts=posts)
+    page = request.args.get('page', 1, type=int)
+    posts = current_user.post_feed().paginate(page, app.config['MAX_POST_PER_PAGE'], False)
+    next_url = url_for('index', page=posts.next_num) if posts.has_next else None
+    prev_url = url_for('index', page=posts.prev_num) if posts.has_prev else None
+    print('[INFO] : the query result is {}'.format(posts))
+    return render_template('index.html', form=form, posts=posts.items, next_url=next_url, prev_url=prev_url)
+
+
+@app.route('/explore')
+@login_required
+def explore():
+    page = request.args.get('page', 1, type=int)
+    all_posts = Post.query.paginate(page, app.config['MAX_POST_PER_PAGE'], False)
+    next_url = url_for('explore', page=all_posts.next_num) if all_posts.has_next else None
+    prev_url = url_for('explore', page=all_posts.prev_num) if all_posts.has_prev else None
+    return render_template('index.html', posts=all_posts.items, next_url=next_url, prev_url=prev_url)
 
 
 @app.route('/upload_file')
@@ -118,6 +142,38 @@ def logout():
     return redirect(url_for('index'))
 
 
+@app.route('/reset_password_request', methods=['POST', 'GET'])
+def reset_password_request():
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
+    form = RequestNewPassWordForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(email=form.email.data).first()
+        print('[INFO] : user {} found'.format(user))
+        if user:
+            send_password_reset_email(user)
+        flash('Check your email for the instructions to reset your password')
+        return redirect(url_for('login'))
+    return render_template('reset_password_request.html',
+                           title='Reset Password', form=form)
+
+
+@app.route('/reset_pass/<string:token>', methods=['GET', 'POST'])
+def reset_password(token):
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
+    user = User.verify_reset_password_token(token)
+    if not user:
+        return redirect(url_for('index'))
+    form = ResetPasswordForm()
+    if form.validate_on_submit():
+        user.set_password(form.password.data)
+        db.session.commit()
+        flash('Your password has been reset.')
+        return redirect(url_for('login'))
+    return render_template('reset_password.html', form=form)
+
+
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if (current_user.is_authenticated):
@@ -141,15 +197,12 @@ def register():
 @login_required
 def user(username):
     user = User.query.filter_by(username=username).first_or_404()
-    if current_user.id == user.id:
-        posts = [
-            {'author': user, 'content': 'Test post #1'},
-            {'author': user, 'content': 'Test post #2'}
-        ]
-        avatar = user.generate_avatar(128)
-        return render_template('profile.html', user=user, posts=posts)
-    return render_template('profile.html', user=user, posts=[{'author': user, 'content': 'Test another one#1'},
-                                                             ])
+    page = request.args.get('page', 1, type=int)
+    posts = user.post_feed().paginate(page, app.config['MAX_POST_PER_PAGE'], False)
+    next_url = url_for('index', page=posts.next_num) if posts.has_next else None
+    prev_url = url_for('index', page=posts.prev_num) if posts.has_prev else None
+    print('[INFO] : the query result is {}'.format(posts))
+    return render_template('profile.html', user=user, posts=posts.items, next_url=next_url, prev_url=prev_url)
 
 
 @app.before_request
@@ -157,6 +210,11 @@ def before_request():
     if current_user.is_authenticated:
         current_user.last_seen = datetime.utcnow().astimezone()
         db.session.commit()
+
+    @app.before_request
+    def before_request():
+        # ...
+        g.locale = str(get_locale())
 
 
 @app.route('/user/<string:username>/edit', methods=['GET', 'POST'])
@@ -249,5 +307,7 @@ def live_audio_feed():
 #
 @socketio.on('json')
 def handle_message(json):
-    print('[INFO] : recieved chunk of data : ', str(json))
+    print('[INFO] : recieved chunk of data : ',len(json))
+    chunks = np.array([b for b in json],dtype='float64')
+    print(mfcc(chunks,n_mfcc=40,sr=44100).shape)
     emit('recieve', {'proba': random.random()})

@@ -12,4 +12,4 @@ def not_found_error(error):
 def internal_error(error):
     app.logger.error('Internal error, please wait until the maintainers fix the issue')
     db.session.rollback()
-    return render_template('errors/500.html'),500
+    return render_template('errors/500.html'), 500

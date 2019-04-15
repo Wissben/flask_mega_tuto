@@ -1,0 +1,196 @@
+2019-04-09 14:29:05,864 ERROR: Exception on /login [GET] [in /home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py:1761]
+Traceback (most recent call last):
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/weiss/CODES/BM/intent_gatherer/flask_backend/app/routes.py", line 110, in login
+    return render_template('login.html', title='Sign in', form=form, authentification_error=False)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/templating.py", line 135, in render_template
+    context, ctx.app)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/templating.py", line 117, in _render
+    rv = template.render(context)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/jinja2/asyncsupport.py", line 76, in render
+    return original_render(self, *args, **kwargs)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/jinja2/environment.py", line 1008, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/jinja2/environment.py", line 780, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/jinja2/_compat.py", line 37, in reraise
+    raise value.with_traceback(tb)
+  File "/home/weiss/CODES/BM/intent_gatherer/flask_backend/app/templates/login.html", line 1, in top-level template code
+    {% extends 'base.html' %}
+  File "/home/weiss/CODES/BM/intent_gatherer/flask_backend/app/templates/base.html", line 24, in top-level template code
+    <a href="{{ url_for('live_audio') }}"> Live classification</a>
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/helpers.py", line 356, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 2061, in handle_url_build_error
+    reraise(exc_type, exc_value, tb)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/helpers.py", line 345, in url_for
+    force_external=external)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/werkzeug/routing.py", line 2181, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.BuildError: Could not build url for endpoint 'live_audio'. Did you mean 'live_audio_feed' instead?
+2019-04-09 14:29:05,895 ERROR: Internal error, please wait until the maintainers fix the issue [in /home/weiss/CODES/BM/intent_gatherer/flask_backend/app/errors.py:13]
+2019-04-09 14:29:17,792 INFO: The application started [in /home/weiss/CODES/BM/intent_gatherer/flask_backend/app/__init__.py:44]
+2019-04-09 14:29:54,418 INFO: The application started [in /home/weiss/CODES/BM/intent_gatherer/flask_backend/app/__init__.py:44]
+2019-04-09 14:30:10,155 INFO: The application started [in /home/weiss/CODES/BM/intent_gatherer/flask_backend/app/__init__.py:44]
+2019-04-09 16:02:37,157 INFO: The application started [in /home/weiss/CODES/BM/intent_gatherer/flask_backend/app/__init__.py:44]
+2019-04-09 16:02:56,660 INFO: The application started [in /home/weiss/CODES/BM/intent_gatherer/flask_backend/app/__init__.py:44]
+2019-04-09 16:21:29,951 INFO: The application started [in /home/weiss/CODES/BM/intent_gatherer/flask_backend/app/__init__.py:44]
+2019-04-09 16:21:37,600 ERROR: Exception on / [POST] [in /home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py:1761]
+Traceback (most recent call last):
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask_login/utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "/home/weiss/CODES/BM/intent_gatherer/flask_backend/app/routes.py", line 30, in index
+    post = Post(content=form.post.data,author=current_user.id)
+  File "<string>", line 4, in __init__
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/sqlalchemy/orm/state.py", line 441, in _initialize_instance
+    manager.dispatch.init_failure(self, args, kwargs)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/sqlalchemy/util/langhelpers.py", line 68, in __exit__
+    compat.reraise(exc_type, exc_value, exc_tb)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/sqlalchemy/util/compat.py", line 129, in reraise
+    raise value
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/sqlalchemy/orm/state.py", line 438, in _initialize_instance
+    return manager.original_init(*mixed[1:], **kwargs)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/sqlalchemy/ext/declarative/base.py", line 836, in _declarative_constructor
+    setattr(self, k, kwargs[k])
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/sqlalchemy/orm/attributes.py", line 262, in __set__
+    instance_state(instance), instance_dict(instance), value, None
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/sqlalchemy/orm/attributes.py", line 975, in set
+    value = self.fire_replace_event(state, dict_, value, old, initiator)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/sqlalchemy/orm/attributes.py", line 998, in fire_replace_event
+    state, value, previous, initiator or self._replace_token
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/sqlalchemy/orm/attributes.py", line 1407, in emit_backref_from_scalar_set_event
+    instance_state(child),
+AttributeError: 'int' object has no attribute '_sa_instance_state'
+2019-04-09 16:21:37,701 ERROR: Internal error, please wait until the maintainers fix the issue [in /home/weiss/CODES/BM/intent_gatherer/flask_backend/app/errors.py:13]
+2019-04-09 16:23:12,626 INFO: The application started [in /home/weiss/CODES/BM/intent_gatherer/flask_backend/app/__init__.py:44]
+2019-04-09 16:25:14,448 INFO: The application started [in /home/weiss/CODES/BM/intent_gatherer/flask_backend/app/__init__.py:44]
+2019-04-09 16:26:58,630 INFO: The application started [in /home/weiss/CODES/BM/intent_gatherer/flask_backend/app/__init__.py:44]
+2019-04-09 16:46:21,458 INFO: The application started [in /home/weiss/CODES/BM/intent_gatherer/flask_backend/app/__init__.py:44]
+2019-04-09 16:46:32,924 INFO: The application started [in /home/weiss/CODES/BM/intent_gatherer/flask_backend/app/__init__.py:44]
+2019-04-09 16:46:35,885 INFO: The application started [in /home/weiss/CODES/BM/intent_gatherer/flask_backend/app/__init__.py:44]
+2019-04-09 16:49:39,621 INFO: The application started [in /home/weiss/CODES/BM/intent_gatherer/flask_backend/app/__init__.py:44]
+2019-04-09 16:49:44,163 ERROR: Exception on /follow/user_88 [GET] [in /home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py:1761]
+Traceback (most recent call last):
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask_login/utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "/home/weiss/CODES/BM/intent_gatherer/flask_backend/app/routes.py", line 181, in follow
+    user = User.filter_by(username=username).first()
+AttributeError: type object 'User' has no attribute 'filter_by'
+2019-04-09 16:49:44,193 ERROR: Internal error, please wait until the maintainers fix the issue [in /home/weiss/CODES/BM/intent_gatherer/flask_backend/app/errors.py:13]
+2019-04-09 16:50:06,969 INFO: The application started [in /home/weiss/CODES/BM/intent_gatherer/flask_backend/app/__init__.py:44]
+2019-04-09 16:50:11,965 ERROR: Exception on /user/user_88 [GET] [in /home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py:1761]
+Traceback (most recent call last):
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask_login/utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "/home/weiss/CODES/BM/intent_gatherer/flask_backend/app/routes.py", line 151, in user
+    return render_template('profile.html', user=user, posts=[{'author': user, 'content': 'Test another one#1'},
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/templating.py", line 135, in render_template
+    context, ctx.app)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/templating.py", line 117, in _render
+    rv = template.render(context)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/jinja2/asyncsupport.py", line 76, in render
+    return original_render(self, *args, **kwargs)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/jinja2/environment.py", line 1008, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/jinja2/environment.py", line 780, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/jinja2/_compat.py", line 37, in reraise
+    raise value.with_traceback(tb)
+  File "/home/weiss/CODES/BM/intent_gatherer/flask_backend/app/templates/profile.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "/home/weiss/CODES/BM/intent_gatherer/flask_backend/app/templates/base.html", line 36, in top-level template code
+    {% endwith %}{% block content %}{% endblock %}
+  File "/home/weiss/CODES/BM/intent_gatherer/flask_backend/app/templates/profile.html", line 23, in block "content"
+    <p><a href="{{ url_for('unfollow', username=user.username) }}">Unfollow</a></p>
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/helpers.py", line 356, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 2061, in handle_url_build_error
+    reraise(exc_type, exc_value, tb)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/helpers.py", line 345, in url_for
+    force_external=external)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/werkzeug/routing.py", line 2181, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.BuildError: Could not build url for endpoint 'unfollow' with values ['username']. Did you mean 'unofllow' instead?
+2019-04-09 16:50:12,014 ERROR: Internal error, please wait until the maintainers fix the issue [in /home/weiss/CODES/BM/intent_gatherer/flask_backend/app/errors.py:13]
+2019-04-09 16:50:33,195 INFO: The application started [in /home/weiss/CODES/BM/intent_gatherer/flask_backend/app/__init__.py:44]
+2019-04-09 16:50:40,354 ERROR: Exception on /unfollow/user_88 [GET] [in /home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py:1761]
+Traceback (most recent call last):
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/sqlalchemy/orm/attributes.py", line 221, in __getattr__
+    return getattr(self.comparator, key)
+AttributeError: 'Comparator' object has no attribute 'query'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/flask_login/utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "/home/weiss/CODES/BM/intent_gatherer/flask_backend/app/routes.py", line 196, in unfollow
+    user = User.followed.query.filter_by(username=username).first()
+  File "/home/weiss/CODES/BM/intent_gatherer/intent_gatherer_venv/lib/python3.7/site-packages/sqlalchemy/orm/attributes.py", line 230, in __getattr__
+    key,
+AttributeError: Neither 'InstrumentedAttribute' object nor 'Comparator' object associated with User.followed has an attribute 'query'
+2019-04-09 16:50:40,370 ERROR: Internal error, please wait until the maintainers fix the issue [in /home/weiss/CODES/BM/intent_gatherer/flask_backend/app/errors.py:13]
+2019-04-09 16:52:37,042 INFO: The application started [in /home/weiss/CODES/BM/intent_gatherer/flask_backend/app/__init__.py:44]

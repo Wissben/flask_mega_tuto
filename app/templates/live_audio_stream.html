@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block content %}
+{% block app_content %}
 
     <main>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit molestiae itaque facere totam saepe tempore
@@ -13,7 +13,12 @@
             <button id="btnStop">STOP RECORDING</button>
         </p>
 
-        <audio controls hidden></audio>
+        <audio controls
+               hidden
+               loop
+               muted
+               crossorigin="anonymous"
+               id="audio"></audio>
 
         <!-- could save to canvas and do image manipulation and saving too -->
     </main>
@@ -22,82 +27,64 @@
             audio: true,
             video: false
         };
-        {##}
-        {#if (navigator.mediaDevices === undefined) {#}
-        {#    navigator.mediaDevices = {};#}
-        {#    navigator.mediaDevices.getUserMedia = constraintObj => {#}
-        {#        let getUserMedia = navigator.webkitGetUserMedia || navigator.mozGetUserMedia#}
-        {#        if (!getUserMedia) {#}
-        {#            return Promise.reject(new Error('[ERROR] : getUserMedia not found'));#}
-        {#        }#}
-        {#        return new Promise((resolve, reject) => {#}
-        {#            getUserMedia.call(navigator, constraintObj, resolve, reject);#}
-        {#        });#}
-        {#    }#}
-        {#}#}
-            {#else {#}
-            {#    navigator.mediaDevices.enumerateDevices().then(#}
-            {#        (devices) => {#}
-            {#            devices.forEach(#}
-            {#                (device) =>#}
-            {#                    console.log(device.kind.toUpperCase(), device.label)#}
-            {#            )#}
-            {#        }#}
-            {#    ).catch(err => {#}
-            {#            console.error(err.name, err.message);#}
-            {#        }#}
-            {#    )#}
-            {#}#}
+        navigator.mediaDevices.getUserMedia(constraintObj).then(mediaStreamObj => {
+            let audio = document.querySelector('audio');
+            if ('srcObject' in audio) {
+                audio.srcObject = mediaStreamObj;
+            }
+            else {
+                audio.src = window.URL.createMediaStreamSource(mediaStreamObj);
+            }
+            audio.onloadedmetadata = (ev) => {
+                audio.play();
+            };
+            let start = document.getElementById('btnStart');
+            let stop = document.getElementById('btnStop');
+            let mediaRecorder = new MediaRecorder(mediaStreamObj)
+            console.debug(mediaStreamObj);
+            let chunks = [];
+            let CONNECTION_PORT = 'http://localhost:5000'
+            let socket = io.connect(CONNECTION_PORT);
 
-                navigator.mediaDevices.getUserMedia(constraintObj).then(mediaStreamObj => {
-                    let audio = document.querySelector('audio');
-                    if ('srcObject' in audio) {
-                        audio.srcObject = mediaStreamObj;
-                    }
-                    else {
-                        audio.src = window.URL.createObjectURL(mediaStreamObj);
-                    }
-                    audio.onloadedmetadata = (ev) => {
-                        audio.play();
-                    };
-                    let start = document.getElementById('btnStart');
-                    let stop = document.getElementById('btnStop');
-                    let mediaRecorder = new MediaRecorder(mediaStreamObj)
-                    console.debug(mediaStreamObj);
-                    let chunks = 0;
-                    let CONNECTION_PORT = 'http://localhost:5000'
-                    let socket = io.connect(CONNECTION_PORT);
 
-                    socket.on('recieve', function (msg) {
-                        console.log('RECIEVED : ', msg);
-                        $('#data').html(msg.proba)
-                    });
+            socket.on('recieve', function (msg) {
+                console.log('RECIEVED : ', msg);
+                $('#data').html(msg.proba)
+            });
 
-                    start.addEventListener("click", (ev) => {
-                        mediaRecorder.start(1000);
-                        console.log('STARTED RECORDING with state : ', mediaRecorder.state);
-                    });
+            start.addEventListener("click", (ev) => {
+                mediaRecorder.start(1000);
+                window.setInterval(function () {
+                    console.log('CURRENT BLOB : ', mediaRecorder.requestData());
 
-                    stop.addEventListener("click", (ev) => {
-                        mediaRecorder.stop();
-                        console.log('STOPPED RECORDING with state : ', mediaRecorder.state);
-                    });
+                },1000);
+                console.log('STARTED RECORDING with state : ', mediaRecorder.state);
+            });
 
-                    mediaRecorder.ondataavailable = (ev) => {
-                        //console.log("CURRENT DATA : ", ev.data)
-                        socket.emit('json', ev.data);
-                        chunks = ev.data;
-                    };
 
-                    mediaRecorder.onstop = (ev) => {
-                        {#let blob = new Blob(chunks,{'type':'audio/wav'});#}
-                        chunks = 0;
-                        console.log('FULL STOP');
-                    }
+            stop.addEventListener("click", (ev) => {
+                mediaRecorder.stop();
+                clearInterval();
+                console.log('STOPPED RECORDING with state : ', mediaRecorder.state);
+            });
 
-                }).catch((err) => {
-                    console.log(err.name, err.message);
-                })
+
+            mediaRecorder.ondataavailable = (ev) => {
+                //console.log("CURRENT DATA : ", ev.data)
+                let blob = new Blob([ev.data], {'type': 'audio/wav'});
+                socket.emit('json', ev.data);
+                chunks.push(ev.data);
+            };
+
+
+            mediaRecorder.onstop = (ev) => {
+
+                chunks = [];
+                console.log('FULL STOP');
+            }
+        }).catch((err) => {
+            console.log(err.name, err.message);
+        })
     </script>
     <div id="data"></div>
 {% endblock %}

@@ -1,33 +1,18 @@
 {% extends 'base.html' %}
-{#{% import "wtf.html" as wtf %}#}
+{% import "bootstrap/wtf.html" as wtf %}
 
-{% block content %}
+{% block app_content %}
     <h1>Sign In</h1>
-    <form action="" method="post" novalidate>
-        {{ form.hidden_tag() }}
-        <p>
-            {{ form.username.label }}<br>
-            {{ form.username(size=32) }}
-            {% if authentification_error %}
-                <span style="color: red;"> Wrong user name of password</span>
-            {% endif %}
-            {% for error in form.username.errors %}
-                <span style="color:red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>
-            {{ form.password.label }}<br>
-            {{ form.password(size=32) }}
-            {% if authentification_error %}
-                <span style="color: red;"> Wrong user name of password</span>
-            {% endif %}
-            {% for error in form.password.errors %}
-                <span style="color: red">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
-        <p>{{ form.submit() }}</p>
-        <p>Don't have an account yet ? <a href="{{ url_for('register') }}">Sign up !</a> </p>
-    </form>
+    <div class="row">
+        <div class="col-md-4">
+            {{ wtf.quick_form(form) }}
+        </div>
+    </div>
+    <p>Don't have an account yet ? <a href="{{ url_for('register') }}">Sign up !</a></p>
+    <p>
+        Forgot Your Password?
+        <a href="{{ url_for('reset_password_request') }}">Click to Reset It</a>
+    </p>
+
 
 {% endblock %}

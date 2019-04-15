@@ -2,10 +2,13 @@ import logging
 import os
 from logging.handlers import SMTPHandler, RotatingFileHandler
 
-from flask import Flask
+from flask import Flask, request
+from flask_babel import Babel
 from flask_bootstrap import Bootstrap
 from flask_login import LoginManager
+from flask_mail import Mail
 from flask_migrate import Migrate
+from flask_moment import Moment
 from flask_socketio import SocketIO
 from flask_sqlalchemy import SQLAlchemy
 
@@ -53,8 +56,17 @@ login_manager = LoginManager(app)
 login_manager.login_view = 'login'
 socketio = SocketIO(app)
 Bootstrap(app)
+mail = Mail(app)
+moment = Moment(app)
+babel = Babel(app)
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
+
+
+@babel.localeselector
+def get_locale():
+    return request.accept_languages.best_match(app.config['LANGUAGES'])
+
 
 if not app.debug:
     setup_file_logging()
