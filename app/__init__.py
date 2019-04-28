@@ -2,7 +2,8 @@ import logging
 import os
 from logging.handlers import SMTPHandler, RotatingFileHandler
 
-from flask import Flask, request
+from elasticsearch import Elasticsearch
+from flask import Flask, request, current_app
 from flask_babel import Babel
 from flask_bootstrap import Bootstrap
 from flask_login import LoginManager
@@ -12,11 +13,58 @@ from flask_moment import Moment
 from flask_socketio import SocketIO
 from flask_sqlalchemy import SQLAlchemy
 
-from app.config import Config
+from config import Config
+
+# Creating the flask app and binding the configuration class to it
+
+# Post-app-creating initilization
+
+# do the import here to avoid circular dependencies
+
+
+db = SQLAlchemy()
+migrate = Migrate()
+login_manager = LoginManager()
+login_manager.login_view = 'login'
+login_manager.login_message = 'Please log in to access this page.'
+mail = Mail()
+bootstrap = Bootstrap()
+moment = Moment()
+babel = Babel()
+socketio = SocketIO()
+
+
+def create_app(config_class=Config):
+    app = Flask(__name__)
+    app.config.from_object(config_class)
+
+    db.init_app(app)
+    migrate.init_app(app)
+    login_manager.init_app(app)
+    mail.init_app(app)
+    bootstrap.init_app(app)
+    moment.init_app(app)
+    babel.init_app(app)
+    socketio.init_app(app)
+
+    from app.errors import bp as errors_bp
+    app.register_blueprint(errors_bp)
+
+    from app.auth import bp as auth_bp
+    app.register_blueprint(auth_bp, url_prefix='/auth')
+
+    from app.main import bp as main_bp
+    app.register_blueprint(main_bp)
+    if not app.debug and not app.testing:
+        setup_mail_logging(app)
+        setup_file_logging(app)
+
+    app.elasticsearch = Elasticsearch([app.config['ELASTICSEARCH_URL']]) if app.config['ELASTICSEARCH'] else None
+    return app
 
 
 # Helper functions :
-def setup_mail_logging():
+def setup_mail_logging(app):
     if app.config['MAIL_SERVER']:
         auth = None
         if app.config['MAIL_USERNAME'] or app.config['MAIL_PASSWORD']:
@@ -35,7 +83,7 @@ def setup_mail_logging():
         app.logger.addHandler(mail_handler)
 
 
-def setup_file_logging():
+def setup_file_logging(app):
     if not os.path.exists('logs'):
         os.mkdir('logs')
     fh = RotatingFileHandler('logs/main_app.log', maxBytes=1024 * 20, backupCount=15)
@@ -47,31 +95,11 @@ def setup_file_logging():
     app.logger.info('The application started')
 
 
-# Creating the flask app and binding the configuration class to it
-app = Flask(__name__)
-app.config.from_object(Config)
-
-# Post-app-creating initilization
-login_manager = LoginManager(app)
-login_manager.login_view = 'login'
-socketio = SocketIO(app)
-Bootstrap(app)
-mail = Mail(app)
-moment = Moment(app)
-babel = Babel(app)
-db = SQLAlchemy(app)
-migrate = Migrate(app, db)
-
-
 @babel.localeselector
 def get_locale():
-    return request.accept_languages.best_match(app.config['LANGUAGES'])
+    return request.accept_languages.best_match(current_app.config['LANGUAGES'])
 
-
-if not app.debug:
-    setup_file_logging()
 
 if __name__ == '__main__':
+    app = create_app()
     socketio.run(app)
-
-from app import routes, models, errors

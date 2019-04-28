@@ -1,15 +1,16 @@
 from flask import render_template
 
-from app import app, db
+from app import db
+from app.errors import bp
 
 
-@app.errorhandler(404)
+@bp.errorhandler(404)
 def not_found_error(error):
-    app.logger.error('404 not found')
+    bp.logger.error('404 not found')
     return render_template('errors/404.html'), 404
 
-@app.errorhandler(500)
+@bp.errorhandler(500)
 def internal_error(error):
-    app.logger.error('Internal error, please wait until the maintainers fix the issue')
+    bp.logger.error('Internal error, please wait until the maintainers fix the issue')
     db.session.rollback()
     return render_template('errors/500.html'), 500

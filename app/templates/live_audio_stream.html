@@ -1,50 +1,85 @@
 {% extends 'base.html' %}
 {% block app_content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <button class="btn btn-success" id="btnStart">START RECORDING</button>
+            </div>
+            <div class="col-md-6">
+                <button class="btn btn-danger" id="btnStop">STOP RECORDING</button>
+            </div>
 
-    <main>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit molestiae itaque facere totam saepe tempore
-            esse temporibus, quae reprehenderit aliquid iusto ea laborum, iure eligendi odio exercitationem sapiente
-            illum
-            quos.</p>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div id="data"></div>
+            </div>
+        </div>
+    </div>
+    <audio controls
+           hidden
+           loop
+           muted
+           crossorigin="anonymous"
+           id="audio"></audio>
 
-        <p>
-            <button id="btnStart">START RECORDING</button>
-            <br/>
-            <button id="btnStop">STOP RECORDING</button>
-        </p>
-
-        <audio controls
-               hidden
-               loop
-               muted
-               crossorigin="anonymous"
-               id="audio"></audio>
-
-        <!-- could save to canvas and do image manipulation and saving too -->
-    </main>
+    <!-- could save to canvas and do image manipulation and saving too -->
     <script>
+
+
         let constraintObj = {
-            audio: true,
+            audio: {
+                sampleRate: 16384,
+                sampleSize: 16
+            },
             video: false
         };
-        navigator.mediaDevices.getUserMedia(constraintObj).then(mediaStreamObj => {
-            let audio = document.querySelector('audio');
+
+        navigator.mediaDevices.getUserMedia(constraintObj).then(stream => {
+            let audio = document.getElementById('audio');
             if ('srcObject' in audio) {
-                audio.srcObject = mediaStreamObj;
-            }
-            else {
-                audio.src = window.URL.createMediaStreamSource(mediaStreamObj);
+                audio.srcObject = stream;
+            } else {
+                audio.src = window.URL.createObjectURL(stream);
             }
             audio.onloadedmetadata = (ev) => {
                 audio.play();
             };
-            let start = document.getElementById('btnStart');
-            let stop = document.getElementById('btnStop');
-            let mediaRecorder = new MediaRecorder(mediaStreamObj)
-            console.debug(mediaStreamObj);
-            let chunks = [];
+
             let CONNECTION_PORT = 'http://localhost:5000'
             let socket = io.connect(CONNECTION_PORT);
+
+            var start = document.getElementById("btnStart");
+            var stop = document.getElementById("btnStop");
+            var playButton = document.getElementById("playButton");
+            var downloadButton = document.getElementById("downloadButton");
+
+            var chunks = [];
+            var recorder = null;
+            var recordingLength = 0;
+            var volume = null;
+            var sampleRate = 16384;
+            var context = null;
+            var blob = null;
+            var MAX_SIZE = 32768;
+            var bufferSize = 1024;
+
+            const audioContext = new AudioContext();
+            const mediaStream = audioContext.createMediaStreamSource(stream);
+            const analyser = audioContext.createAnalyser();
+            const scriptProcessor = audioContext.createScriptProcessor(bufferSize, 1, 1);
+
+            scriptProcessor.onaudioprocess = ev => {
+
+                chunks.push(ev.inputBuffer.getChannelData(0));
+                recordingLength += bufferSize;
+                if (recordingLength % MAX_SIZE === 0) {
+                    data = flattenArray(chunks.slice(
+                        recordingLength / bufferSize + 1 - MAX_SIZE / bufferSize, recordingLength / bufferSize - 1), MAX_SIZE);
+
+                    socket.emit('json', data);
+                }
+            }
 
 
             socket.on('recieve', function (msg) {
@@ -53,38 +88,39 @@
             });
 
             start.addEventListener("click", (ev) => {
-                mediaRecorder.start(1000);
-                window.setInterval(function () {
-                    console.log('CURRENT BLOB : ', mediaRecorder.requestData());
-
-                },1000);
-                console.log('STARTED RECORDING with state : ', mediaRecorder.state);
+                mediaStream.connect(analyser);
+                analyser.connect(scriptProcessor);
+                scriptProcessor.connect(audioContext.destination);
+                console.log('STARTED RECORDING');
             });
-
 
             stop.addEventListener("click", (ev) => {
-                mediaRecorder.stop();
-                clearInterval();
-                console.log('STOPPED RECORDING with state : ', mediaRecorder.state);
+                scriptProcessor.disconnect(audioContext.destination);
+                analyser.disconnect(scriptProcessor);
+                mediaStream.disconnect(analyser);
+                console.log(chunks.length * 1024);
+                console.log(recordingLength);
+                data = flattenArray(chunks, recordingLength);
+                {#socket.emit('json', data);#}
+                chunks = [];
+                recordingLength = 0;
+                console.log('STOPPED RECORDING');
             });
 
-
-            mediaRecorder.ondataavailable = (ev) => {
-                //console.log("CURRENT DATA : ", ev.data)
-                let blob = new Blob([ev.data], {'type': 'audio/wav'});
-                socket.emit('json', ev.data);
-                chunks.push(ev.data);
-            };
-
-
-            mediaRecorder.onstop = (ev) => {
-
-                chunks = [];
-                console.log('FULL STOP');
-            }
         }).catch((err) => {
             console.log(err.name, err.message);
         })
+
+        function flattenArray(channelBuffer, recordingLength) {
+            var result = new Float32Array(recordingLength);
+            var offset = 0;
+            for (var i = 0; i < channelBuffer.length; i++) {
+                var buffer = channelBuffer[i];
+                result.set(buffer, offset);
+                offset += buffer.length;
+            }
+            return result;
+        }
     </script>
-    <div id="data"></div>
+
 {% endblock %}

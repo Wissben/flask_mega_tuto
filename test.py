@@ -1,12 +1,12 @@
 import unittest
 
-from app import app, db
+from app import bp, db
 from app.models import User, Post
 
 
 class UserModelCase(unittest.TestCase):
     def setUp(self):
-        app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///'
+        bp.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///'
         db.create_all()
 
     def tearDown(self):

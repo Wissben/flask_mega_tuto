@@ -20,11 +20,11 @@
                     Followers : {{ user.get_followers_count() }}<br>
                 </p>
                 {% if user == current_user %}
-                    <p><a href="{{ url_for('edit_profile',username =user.username) }}"> Edit my profile</a></p>
+                    <p><a href="{{ url_for('main.edit_profile',username =user.username) }}"> Edit my profile</a></p>
                 {% elif not current_user.is_following(user) %}
-                    <p><a href="{{ url_for('follow', username=user.username) }}">Follow</a></p>
+                    <p><a href="{{ url_for('main.follow', username=user.username) }}">Follow</a></p>
                 {% else %}
-                    <p><a href="{{ url_for('unfollow', username=user.username) }}">Unfollow</a></p>
+                    <p><a href="{{ url_for('main.unfollow', username=user.username) }}">Unfollow</a></p>
                 {% endif %}
             </td>
 

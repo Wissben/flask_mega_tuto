@@ -2,10 +2,9 @@
 <project version="4">
   <component name="dataSourceStorageLocal">
     <data-source name="app.db" uuid="14895dd5-6acb-4292-a91c-b7b3b9f3825f">
-      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="SQLITE" exact-version="0" />
       <secret-storage>master_key</secret-storage>
       <auth-required>false</auth-required>
-      <first-sync>true</first-sync>
     </data-source>
   </component>
 </project>

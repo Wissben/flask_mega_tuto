@@ -1,12 +1,13 @@
 from datetime import datetime
 from hashlib import md5
 from time import time
+from flask import current_app
 
 import jwt
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 
-from app import app, db, login_manager
+from app import db, login_manager
 
 
 @login_manager.user_loader
@@ -85,14 +86,14 @@ class User(UserMixin, db.Model):
                 'reset_pass': self.id,
                 'exp': time() + expire_in,
             },
-            app.config['SECRET_KEY'],
+            current_app.config['SECRET_KEY'],
             algorithm='HS256'
         ).decode('utf-8')
 
     @staticmethod
     def verify_reset_password_token(token):
         try:
-            id = jwt.decode(token, app.config['SECRET_KEY'],
+            id = jwt.decode(token, current_app.config['SECRET_KEY'],
                             algorithms=['HS256'])['reset_pass']
         except:
             return

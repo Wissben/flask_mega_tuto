@@ -100,3 +100,44 @@ function launch() {
         console.log(err.name, err.message);
     })
 }
+
+            //
+            // let start = document.getElementById('btnStart');
+            // let stop = document.getElementById('btnStop');
+            // let mediaRecorder = new MediaRecorder(mediaStreamObj)
+            // console.debug(mediaStreamObj);
+            // let chunks = [];
+            // let CONNECTION_PORT = 'http://localhost:5000'
+            // let socket = io.connect(CONNECTION_PORT);
+            //
+            //
+            // socket.on('recieve', function (msg) {
+            //     console.log('RECIEVED : ', msg);
+            //     $('#data').html(msg.proba)
+            // });
+            //
+            // start.addEventListener("click", (ev) => {
+            //     mediaRecorder.start(1000);
+            //     console.log('STARTED RECORDING with state : ', mediaRecorder.state);
+            // });
+            //
+            //
+            // stop.addEventListener("click", (ev) => {
+            //     mediaRecorder.stop();
+            //     console.log('STOPPED RECORDING with state : ', mediaRecorder.state);
+            // });
+            //
+            //
+            // mediaRecorder.ondataavailable = (ev) => {
+            //     console.log('CURRENT BLOB : ', mediaStreamObj);
+            //     let blob = new Blob([ev.data], {'type': 'audio/wav'});
+            //     socket.emit('json', ev.data);
+            //     chunks.push(ev.data);
+            // };
+            //
+            //
+            // mediaRecorder.onstop = (ev) => {
+            //
+            //     chunks = [];
+            //     console.log('FULL STOP');
+            // }

@@ -1,10 +1,8 @@
-<html>
-   <body>
-       
-      <form action = "http://localhost:5000/audio/uploader" method = "POST" 
-         enctype = "multipart/form-data">
-         <input type = "file" name = "audio_file" />
-         <input type = "submit"/>
-      </form>
-   </body>
-</html>
+{% extends 'base.html' %}
+{% block app_content %}
+    <form action="http://localhost:5000/audio/uploader" method="POST" enctype="multipart/form-data">
+        <input type="file" name="audio_file" class="form-control-file"/>
+        <input type="submit" class="btn btn-primary mb-2"/>
+    </form>
+{% endblock %}
+
