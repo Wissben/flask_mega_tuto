@@ -1,7 +1,9 @@
 import os
+import random
 import tempfile
 from time import time
 
+import numpy as np
 import tensorflow as tf
 from tensorflow.python import keras
 
@@ -34,16 +36,26 @@ def build_model(name=None):
     if name is None:
         name = 'Dummy'
     inputs = keras.Input(shape=(ORIGINAL_FLATTEN_INPUT_DIM,), name=name)
-    x = keras.layers.Dense(32, activation='relu')(inputs)
+    x = keras.layers.Dense(128, activation='relu')(inputs)
+    # x = keras.layers.Dense(64, activation='relu')(x)
+    x = keras.layers.Dense(32, activation='relu')(x)
     x = keras.layers.Lambda(lambda x: keras.backend.random_uniform([1, ]))(x)
+    # x = keras.layers.Dense(1, activation='relu')(x)
     model = keras.Model(inputs=inputs, outputs=x, name='test')
-    model.compile(optimizer='adam', loss='mse')
+    model.compile(optimizer='adam', loss='mse', metrics=['accuracy'])
     return model
 
 
-# a = np.array([v for v in range(ORIGINAL_FLATTEN_INPUT_DIM)])
-# print(a.shape)
-# prediction = model.predict(x=[[a]], verbose=1)
-# print(prediction)
+def train_model(model):
+    x = np.array([[random.random() for j in range(ORIGINAL_FLATTEN_INPUT_DIM)] for i in range(15000)])
+    y = np.array([np.mean(l) for l in x])
+    model.fit(x=x, y=y, epochs=15, batch_size=32)
+    # a = np.array([v for v in range(ORIGINAL_FLATTEN_INPUT_DIM)])
+    # print(a.shape)
+    # prediction = model.predict(x=[[a]], verbose=1)
+    # print(prediction)
+
+
 model = build_model('test')
-save_model(model,1)
+# train_model(model)
+save_model(model, 1)

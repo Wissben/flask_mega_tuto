@@ -5,23 +5,21 @@ from datetime import datetime
 from time import sleep
 
 import numpy as np
-from flask import Response
-from flask import render_template, flash, redirect, url_for, request, g, \
-    jsonify, current_app
+from flask import (Response, current_app, flash, g, jsonify, redirect,
+                   render_template, request, url_for)
 from flask_babel import get_locale
 from flask_login import current_user, login_required
 from flask_socketio import emit
-from guess_language import guess_language
+# from guess_language import guess_language
 from librosa.feature import mfcc
 from scipy.io import wavfile
 
 import app.utils as utils
-from app import db
-from app import socketio
+from app import db, socketio
 from app.main import bp
-from app.main.forms import EditProfileForm, PostForm
-from app.models import User, Post
-from config import APP_STATIC, APP_BASE_DIR
+from app.main.forms import EditProfileForm, PostForm, SearchForm
+from app.models import Post, User
+from config import APP_BASE_DIR, APP_STATIC
 
 AUTHORIZED_EXTENSIONS = ['mp3', 'wav']
 
@@ -32,19 +30,23 @@ AUTHORIZED_EXTENSIONS = ['mp3', 'wav']
 def index():
     form = PostForm()
     if form.validate_on_submit():
-        language = guess_language(form.post.data)
+        language = 'en'  # guess_language(form.post.data)
         if language == 'UNKKNOWN' or len(language) > 5:
             language = ''
-        post = Post(content=form.post.data, author=current_user, language=language)
+        post = Post(content=form.post.data,
+                    author=current_user, language=language)
         print('CURRENT POST ', form.post.data)
         db.session.add(post)
         db.session.commit()
         flash('Your post has been added')
         return redirect(url_for('main.index'))
     page = request.args.get('page', 1, type=int)
-    posts = current_user.post_feed().paginate(page, current_app.config['MAX_POST_PER_PAGE'], False)
-    next_url = url_for('main.index', page=posts.next_num) if posts.has_next else None
-    prev_url = url_for('main.index', page=posts.prev_num) if posts.has_prev else None
+    posts = current_user.post_feed().paginate(
+        page, current_app.config['MAX_POST_PER_PAGE'], False)
+    next_url = url_for(
+        'main.index', page=posts.next_num) if posts.has_next else None
+    prev_url = url_for(
+        'main.index', page=posts.prev_num) if posts.has_prev else None
     print('[INFO] : the query result is {}'.format(posts))
     return render_template('index.html', form=form, posts=posts.items, next_url=next_url, prev_url=prev_url)
 
@@ -53,9 +55,12 @@ def index():
 @login_required
 def explore():
     page = request.args.get('page', 1, type=int)
-    all_posts = Post.query.paginate(page, current_app.config['MAX_POST_PER_PAGE'], False)
-    next_url = url_for('main.explore', page=all_posts.next_num) if all_posts.has_next else None
-    prev_url = url_for('main.explore', page=all_posts.prev_num) if all_posts.has_prev else None
+    all_posts = Post.query.paginate(
+        page, current_app.config['MAX_POST_PER_PAGE'], False)
+    next_url = url_for(
+        'main.explore', page=all_posts.next_num) if all_posts.has_next else None
+    prev_url = url_for(
+        'main.explore', page=all_posts.prev_num) if all_posts.has_prev else None
     return render_template('index.html', posts=all_posts.items, next_url=next_url, prev_url=prev_url)
 
 
@@ -77,6 +82,25 @@ def allowed_extensions(extension):
     return '.' in extension and extension.rsplit('.', 1)[1].lower() in AUTHORIZED_EXTENSIONS
 
 
+@bp.route('/search')
+def search():
+    """
+    Route to perform full text search on the all the posts available in the database
+    """
+    if not g.search_form.validate():
+        return redirect(url_for('main.explore'))
+    page = request.args.get('page', 1, type=int)
+    posts, total = Post.search(
+        g.search_form.q.data, page, current_app.config['MAX_POST_PER_PAGE'])
+    next_url = url_for('main.search',
+                       q=g.search_form.q.data,
+                       page=page + 1) if total > page * current_app.config['MAX_POST_PER_PAGE'] else None
+    prev_url = url_for('main.search',
+                       q=g.search_form.q.data,
+                       page=page - 1) if page > 1 else None
+    return render_template('search.html', title='Search', posts=posts, next_url=next_url, prev_url=prev_url)
+
+
 @bp.route('/classify')
 @login_required
 def inference():
@@ -95,7 +119,8 @@ def upload_secured():
     if request.method == 'POST':
         f = request.files['audio_file']
         if (allowed_extensions(f.filename)):
-            f.save(os.path.join(current_app.config['UPLOAD_FOLDER'], f.filename))
+            f.save(os.path.join(
+                current_app.config['UPLOAD_FOLDER'], f.filename))
             return redirect(url_for('main.audio_feed', filename=f.filename))
         else:
             print('here my friend here')
@@ -107,18 +132,22 @@ def upload_secured():
 def user(username):
     user = User.query.filter_by(username=username).first_or_404()
     page = request.args.get('page', 1, type=int)
-    posts = user.post_feed().paginate(page, current_app.config['MAX_POST_PER_PAGE'], False)
-    next_url = url_for('main.index', page=posts.next_num) if posts.has_next else None
-    prev_url = url_for('main.index', page=posts.prev_num) if posts.has_prev else None
+    posts = user.post_feed().paginate(
+        page, current_app.config['MAX_POST_PER_PAGE'], False)
+    next_url = url_for(
+        'main.index', page=posts.next_num) if posts.has_next else None
+    prev_url = url_for(
+        'main.index', page=posts.prev_num) if posts.has_prev else None
     print('[INFO] : the query result is {}'.format(posts))
     return render_template('profile.html', user=user, posts=posts.items, next_url=next_url, prev_url=prev_url)
 
 
-@bp.before_request
+@bp.before_app_request
 def before_request():
     if current_user.is_authenticated:
         current_user.last_seen = datetime.utcnow().astimezone()
         db.session.commit()
+        g.search_form = SearchForm()
     g.locale = str(get_locale())
 
 
@@ -182,7 +211,7 @@ def audio_parsing_generator(wave_file):
         mfcc_matrix = mfcc(arr, sr=wave_file._framerate, n_mfcc=26)
         print('[INFO] current frame is {}'.format(arr))
         predictions = utils.make_tf_serving_request(mfcc_matrix.flatten().tolist(),
-                                                    'http://localhost:8051/v1/models/test_model')
+                                                    current_app.config['TF_SERVING_URL'])
         # Do stuff to the frame
         # foo(frame)
         sleep(1)
@@ -230,6 +259,6 @@ def handle_message(json_message):
     wavfile.write(os.path.join(APP_BASE_DIR, 'test.wav'), 44100, chunks)
     mfcc_matrix = mfcc(chunks, n_mfcc=26, sr=16384)
     predictions = utils.make_tf_serving_request(mfcc_matrix.flatten().tolist(),
-                                                'http://localhost:8051/v1/models/test_model')
+                                                current_app.config['TF_SERVING_URL'])
     print('[INFO] : RECIEVED  {} FROM TENSORFLOW SERVER'.format(predictions))
     emit('recieve', {'proba': predictions[0]})

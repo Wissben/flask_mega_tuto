@@ -1,0 +1,160 @@
+2019-04-30 17:26:04,034 ERROR: Exception on / [GET] [in /home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask/app.py:1761]
+Traceback (most recent call last):
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask_login/utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/app/main/routes.py", line 51, in index
+    return render_template('index.html', form=form, posts=posts.items, next_url=next_url, prev_url=prev_url)
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask/templating.py", line 135, in render_template
+    context, ctx.app)
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask/templating.py", line 117, in _render
+    rv = template.render(context)
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/jinja2/asyncsupport.py", line 76, in render
+    return original_render(self, *args, **kwargs)
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/jinja2/environment.py", line 1008, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/jinja2/environment.py", line 780, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/jinja2/_compat.py", line 37, in reraise
+    raise value.with_traceback(tb)
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/app/templates/index.html", line 2, in top-level template code
+    {% import 'bootstrap/wtf.html' as wtf %}
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/app/templates/base.html", line 1, in top-level template code
+    {% extends 'bootstrap/base.html' %}
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 1, in top-level template code
+    {% block doc -%}
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 4, in block "doc"
+    {%- block html %}
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 20, in block "html"
+    {% block body -%}
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 21, in block "body"
+    {% block navbar %}
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/app/templates/base.html", line 44, in block "navbar"
+    <form class="navbar-form navbar-left " action="{{url_for(main.search)}}" method="GET">
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/jinja2/environment.py", line 430, in getattr
+    return getattr(obj, attribute)
+jinja2.exceptions.UndefinedError: 'main' is undefined
+2019-04-30 17:26:25,429 INFO: The application started [in /home/weiss/Documents/flask_mega_tutorial/flask_backend/app/__init__.py:89]
+2019-04-30 17:26:28,168 ERROR: Exception on / [GET] [in /home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask/app.py:1761]
+Traceback (most recent call last):
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask_login/utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/app/main/routes.py", line 51, in index
+    return render_template('index.html', form=form, posts=posts.items, next_url=next_url, prev_url=prev_url)
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask/templating.py", line 135, in render_template
+    context, ctx.app)
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask/templating.py", line 117, in _render
+    rv = template.render(context)
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/jinja2/asyncsupport.py", line 76, in render
+    return original_render(self, *args, **kwargs)
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/jinja2/environment.py", line 1008, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/jinja2/environment.py", line 780, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/jinja2/_compat.py", line 37, in reraise
+    raise value.with_traceback(tb)
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/app/templates/index.html", line 2, in top-level template code
+    {% import 'bootstrap/wtf.html' as wtf %}
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/app/templates/base.html", line 1, in top-level template code
+    {% extends 'bootstrap/base.html' %}
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 1, in top-level template code
+    {% block doc -%}
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 4, in block "doc"
+    {%- block html %}
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 20, in block "html"
+    {% block body -%}
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 21, in block "body"
+    {% block navbar %}
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/app/templates/base.html", line 44, in block "navbar"
+    <form class="navbar-form navbar-left " action="{{url_for(main.search)}}" method="GET">
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/jinja2/environment.py", line 430, in getattr
+    return getattr(obj, attribute)
+jinja2.exceptions.UndefinedError: 'main' is undefined
+2019-04-30 17:26:51,737 INFO: The application started [in /home/weiss/Documents/flask_mega_tutorial/flask_backend/app/__init__.py:89]
+2019-04-30 17:27:15,771 INFO: The application started [in /home/weiss/Documents/flask_mega_tutorial/flask_backend/app/__init__.py:89]
+2019-04-30 17:27:53,509 ERROR: Exception on /search [GET] [in /home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask/app.py:1761]
+Traceback (most recent call last):
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/app/main/routes.py", line 94, in search
+    g.search_form.q.data, page, current_app.config['MAX_POST_PER_PAGE'])
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/app/models.py", line 110, in search
+    self.__tablename__, query, page=page, page_size=page_size)
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/app/search.py", line 32, in query_index
+    'size': page_size
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/elasticsearch/client/utils.py", line 84, in _wrapped
+    return func(*args, params=params, **kwargs)
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/elasticsearch/client/__init__.py", line 811, in search
+    "GET", _make_path(index, "_search"), params=params, body=body
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/elasticsearch/transport.py", line 318, in perform_request
+    status, headers_response, data = connection.perform_request(method, url, params, body, headers=headers, ignore=ignore, timeout=timeout)
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/elasticsearch/connection/http_urllib3.py", line 239, in perform_request
+    self._raise_error(response.status, raw_data)
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/elasticsearch/connection/base.py", line 131, in _raise_error
+    raise HTTP_EXCEPTIONS.get(status_code, TransportError)(status_code, error_message, additional_info)
+elasticsearch.exceptions.RequestError: RequestError(400, 'search_phase_execution_exception', 'numHits must be > 0; please use TotalHitCountCollector if you just need the total hit count')
+2019-04-30 17:29:35,456 INFO: The application started [in /home/weiss/Documents/flask_mega_tutorial/flask_backend/app/__init__.py:89]
+2019-04-30 17:29:41,274 ERROR: Exception on /search [GET] [in /home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask/app.py:1761]
+Traceback (most recent call last):
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/app/main/routes.py", line 94, in search
+    g.search_form.q.data, page, current_app.config['MAX_POST_PER_PAGE'])
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/app/models.py", line 110, in search
+    self.__tablename__, query, page=page, page_size=page_size)
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/app/search.py", line 32, in query_index
+    'size': page_size
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/elasticsearch/client/utils.py", line 84, in _wrapped
+    return func(*args, params=params, **kwargs)
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/elasticsearch/client/__init__.py", line 811, in search
+    "GET", _make_path(index, "_search"), params=params, body=body
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/elasticsearch/transport.py", line 318, in perform_request
+    status, headers_response, data = connection.perform_request(method, url, params, body, headers=headers, ignore=ignore, timeout=timeout)
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/elasticsearch/connection/http_urllib3.py", line 239, in perform_request
+    self._raise_error(response.status, raw_data)
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/elasticsearch/connection/base.py", line 131, in _raise_error
+    raise HTTP_EXCEPTIONS.get(status_code, TransportError)(status_code, error_message, additional_info)
+elasticsearch.exceptions.RequestError: RequestError(400, 'search_phase_execution_exception', 'numHits must be > 0; please use TotalHitCountCollector if you just need the total hit count')

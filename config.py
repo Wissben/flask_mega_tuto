@@ -2,17 +2,17 @@ import os
 
 from dotenv import load_dotenv
 
-APP_ROOT = os.path.dirname(os.path.abspath(__file__))  # refers to application_top
+APP_ROOT = os.path.dirname(os.path.abspath(
+    __file__))  # refers to application_top
 APP_BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 APP_DATA_BASE_DIR = os.path.join(APP_ROOT, 'app', 'database')
 APP_STATIC = os.path.join(APP_ROOT, 'app', 'static')
 
-load_dotenv(os.path.join(APP_BASE_DIR, '.env'))
-
 
 class Config(object):
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'the_north_remembers'
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or 'sqlite:///' + os.path.join(APP_DATA_BASE_DIR, 'app.db')
+    SQLALCHEMY_DATABASE_URI = os.environ.get(
+        'DATABASE_URL') or 'sqlite:///' + os.path.join(APP_DATA_BASE_DIR, 'app.db')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     MAIL_SERVER = os.environ.get('MAIL_SERVER')
@@ -30,3 +30,5 @@ class Config(object):
     UPLOAD_FOLDER = os.path.join(APP_STATIC)
 
     ELASTICSEARCH_URL = 'http://localhost:9200'
+
+    TF_SERVING_URL = 'http://localhost:8051/v1/models/test_model'

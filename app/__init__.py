@@ -1,9 +1,9 @@
 import logging
 import os
-from logging.handlers import SMTPHandler, RotatingFileHandler
+from logging.handlers import RotatingFileHandler, SMTPHandler
 
 from elasticsearch import Elasticsearch
-from flask import Flask, request, current_app
+from flask import Flask, current_app, request
 from flask_babel import Babel
 from flask_bootstrap import Bootstrap
 from flask_login import LoginManager
@@ -14,13 +14,6 @@ from flask_socketio import SocketIO
 from flask_sqlalchemy import SQLAlchemy
 
 from config import Config
-
-# Creating the flask app and binding the configuration class to it
-
-# Post-app-creating initilization
-
-# do the import here to avoid circular dependencies
-
 
 db = SQLAlchemy()
 migrate = Migrate()
@@ -59,7 +52,8 @@ def create_app(config_class=Config):
         setup_mail_logging(app)
         setup_file_logging(app)
 
-    app.elasticsearch = Elasticsearch([app.config['ELASTICSEARCH_URL']]) if app.config['ELASTICSEARCH'] else None
+    app.elasticsearch = Elasticsearch([app.config['ELASTICSEARCH_URL']]) if app.config['ELASTICSEARCH_URL'] else None
+
     return app
 
 
@@ -99,7 +93,9 @@ def setup_file_logging(app):
 def get_locale():
     return request.accept_languages.best_match(current_app.config['LANGUAGES'])
 
+from app import models
 
-if __name__ == '__main__':
-    app = create_app()
-    socketio.run(app)
+#
+# if __name__ == '__main__':
+#     app = create_app()
+#     socketio.run(app)

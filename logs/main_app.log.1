@@ -1,0 +1,197 @@
+2019-04-30 11:31:43,132 INFO: The application started [in /home/weiss/CODES/BM/flask_mega_tutorial/flask_backend/app/__init__.py:89]
+2019-04-30 11:32:33,766 INFO: The application started [in /home/weiss/CODES/BM/flask_mega_tutorial/flask_backend/app/__init__.py:89]
+2019-04-30 12:51:37,893 INFO: The application started [in /home/weiss/Documents/flask_mega_tutorial/flask_backend/app/__init__.py:89]
+2019-04-30 12:52:26,611 INFO: The application started [in /home/weiss/Documents/flask_mega_tutorial/flask_backend/app/__init__.py:89]
+2019-04-30 13:01:17,978 INFO: The application started [in /home/weiss/Documents/flask_mega_tutorial/flask_backend/app/__init__.py:89]
+2019-04-30 13:07:13,433 INFO: The application started [in /home/weiss/Documents/flask_mega_tutorial/flask_backend/app/__init__.py:89]
+2019-04-30 13:08:58,313 INFO: The application started [in /home/weiss/Documents/flask_mega_tutorial/flask_backend/app/__init__.py:89]
+2019-04-30 13:10:03,318 INFO: The application started [in /home/weiss/Documents/flask_mega_tutorial/flask_backend/app/__init__.py:89]
+2019-04-30 13:20:58,624 INFO: The application started [in /home/weiss/Documents/flask_mega_tutorial/flask_backend/app/__init__.py:89]
+2019-04-30 13:38:40,335 INFO: The application started [in /home/weiss/Documents/flask_mega_tutorial/flask_backend/app/__init__.py:89]
+2019-04-30 13:45:18,393 INFO: The application started [in /home/weiss/Documents/flask_mega_tutorial/flask_backend/app/__init__.py:89]
+2019-04-30 13:47:53,122 INFO: The application started [in /home/weiss/Documents/flask_mega_tutorial/flask_backend/app/__init__.py:89]
+2019-04-30 13:49:40,699 INFO: The application started [in /home/weiss/Documents/flask_mega_tutorial/flask_backend/app/__init__.py:89]
+2019-04-30 16:20:43,732 INFO: The application started [in /home/weiss/Documents/flask_mega_tutorial/flask_backend/app/__init__.py:89]
+2019-04-30 16:21:24,180 INFO: The application started [in /home/weiss/Documents/flask_mega_tutorial/flask_backend/app/__init__.py:89]
+2019-04-30 16:24:16,120 INFO: The application started [in /home/weiss/Documents/flask_mega_tutorial/flask_backend/app/__init__.py:89]
+2019-04-30 16:26:40,963 INFO: The application started [in /home/weiss/Documents/flask_mega_tutorial/flask_backend/app/__init__.py:89]
+2019-04-30 16:30:27,831 INFO: The application started [in /home/weiss/Documents/flask_mega_tutorial/flask_backend/app/__init__.py:89]
+2019-04-30 16:31:14,599 INFO: The application started [in /home/weiss/Documents/flask_mega_tutorial/flask_backend/app/__init__.py:89]
+2019-04-30 17:09:25,227 INFO: The application started [in /home/weiss/Documents/flask_mega_tutorial/flask_backend/app/__init__.py:89]
+2019-04-30 17:09:31,550 ERROR: Exception on / [GET] [in /home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask/app.py:1761]
+Traceback (most recent call last):
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask/app.py", line 1811, in full_dispatch_request
+    rv = self.preprocess_request()
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask/app.py", line 2087, in preprocess_request
+    rv = func()
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/app/main/routes.py", line 150, in before_request
+    db.session.commit()
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/sqlalchemy/orm/scoping.py", line 162, in do
+    return getattr(self.registry(), name)(*args, **kwargs)
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/sqlalchemy/orm/session.py", line 1026, in commit
+    self.transaction.commit()
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/sqlalchemy/orm/session.py", line 500, in commit
+    self.session.dispatch.after_commit(self.session)
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/sqlalchemy/event/attr.py", line 259, in __call__
+    fn(*args, **kw)
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/app/models.py", line 136, in after_commit
+    for obj in session._changes['delete']:
+TypeError: 'method' object is not iterable
+2019-04-30 17:11:05,694 INFO: The application started [in /home/weiss/Documents/flask_mega_tutorial/flask_backend/app/__init__.py:89]
+2019-04-30 17:11:10,210 ERROR: Exception on / [GET] [in /home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask/app.py:1761]
+Traceback (most recent call last):
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask/app.py", line 1811, in full_dispatch_request
+    rv = self.preprocess_request()
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask/app.py", line 2087, in preprocess_request
+    rv = func()
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/app/main/routes.py", line 150, in before_request
+    db.session.commit()
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/sqlalchemy/orm/scoping.py", line 162, in do
+    return getattr(self.registry(), name)(*args, **kwargs)
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/sqlalchemy/orm/session.py", line 1026, in commit
+    self.transaction.commit()
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/sqlalchemy/orm/session.py", line 493, in commit
+    self._prepare_impl()
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/sqlalchemy/orm/session.py", line 461, in _prepare_impl
+    self.session.dispatch.before_commit(self.session)
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/sqlalchemy/event/attr.py", line 259, in __call__
+    fn(*args, **kw)
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/app/models.py", line 125, in before_commit
+    'delete': list(session.delete)
+TypeError: 'method' object is not iterable
+2019-04-30 17:11:57,599 INFO: The application started [in /home/weiss/Documents/flask_mega_tutorial/flask_backend/app/__init__.py:89]
+2019-04-30 17:12:01,029 ERROR: Exception on / [GET] [in /home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask/app.py:1761]
+Traceback (most recent call last):
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask/app.py", line 1811, in full_dispatch_request
+    rv = self.preprocess_request()
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask/app.py", line 2087, in preprocess_request
+    rv = func()
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/app/main/routes.py", line 151, in before_request
+    g.search_form = SearchForm()
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/wtforms/form.py", line 212, in __call__
+    return type.__call__(cls, *args, **kwargs)
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/app/main/forms.py", line 35, in __init__
+    kwargs['formdata'] = request.args
+NameError: name 'request' is not defined
+2019-04-30 17:12:23,532 INFO: The application started [in /home/weiss/Documents/flask_mega_tutorial/flask_backend/app/__init__.py:89]
+2019-04-30 17:12:25,369 ERROR: Exception on / [GET] [in /home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask/app.py:1761]
+Traceback (most recent call last):
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask_login/utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/app/main/routes.py", line 52, in index
+    return render_template('index.html', form=form, posts=posts.items, next_url=next_url, prev_url=prev_url)
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask/templating.py", line 135, in render_template
+    context, ctx.app)
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask/templating.py", line 117, in _render
+    rv = template.render(context)
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/jinja2/asyncsupport.py", line 76, in render
+    return original_render(self, *args, **kwargs)
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/jinja2/environment.py", line 1008, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/jinja2/environment.py", line 780, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/jinja2/_compat.py", line 37, in reraise
+    raise value.with_traceback(tb)
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/app/templates/index.html", line 2, in top-level template code
+    {% import 'bootstrap/wtf.html' as wtf %}
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/app/templates/base.html", line 1, in top-level template code
+    {% extends 'bootstrap/base.html' %}
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 1, in top-level template code
+    {% block doc -%}
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 4, in block "doc"
+    {%- block html %}
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 20, in block "html"
+    {% block body -%}
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 21, in block "body"
+    {% block navbar %}
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/app/templates/base.html", line 44, in block "navbar"
+    <form class="navbar-form navbar-left " action="{{url_for(main.search)}}" method="GET">
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/jinja2/environment.py", line 430, in getattr
+    return getattr(obj, attribute)
+jinja2.exceptions.UndefinedError: 'main' is undefined
+2019-04-30 17:13:07,897 INFO: The application started [in /home/weiss/Documents/flask_mega_tutorial/flask_backend/app/__init__.py:89]
+2019-04-30 17:13:09,910 ERROR: Exception on / [GET] [in /home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask/app.py:1761]
+Traceback (most recent call last):
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask_login/utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/app/main/routes.py", line 52, in index
+    return render_template('index.html', form=form, posts=posts.items, next_url=next_url, prev_url=prev_url)
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask/templating.py", line 135, in render_template
+    context, ctx.app)
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask/templating.py", line 117, in _render
+    rv = template.render(context)
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/jinja2/asyncsupport.py", line 76, in render
+    return original_render(self, *args, **kwargs)
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/jinja2/environment.py", line 1008, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/jinja2/environment.py", line 780, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/jinja2/_compat.py", line 37, in reraise
+    raise value.with_traceback(tb)
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/app/templates/index.html", line 2, in top-level template code
+    {% import 'bootstrap/wtf.html' as wtf %}
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/app/templates/base.html", line 1, in top-level template code
+    {% extends 'bootstrap/base.html' %}
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 1, in top-level template code
+    {% block doc -%}
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 4, in block "doc"
+    {%- block html %}
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 20, in block "html"
+    {% block body -%}
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 21, in block "body"
+    {% block navbar %}
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/app/templates/base.html", line 44, in block "navbar"
+    <form class="navbar-form navbar-left " action="{{url_for(search)}}" method="GET">
+  File "/home/weiss/Documents/flask_mega_tutorial/flask_backend/venv/lib/python3.7/site-packages/flask/helpers.py", line 305, in url_for
+    if endpoint[:1] == '.':
+jinja2.exceptions.UndefinedError: 'search' is undefined
+2019-04-30 17:24:53,121 INFO: The application started [in /home/weiss/Documents/flask_mega_tutorial/flask_backend/app/__init__.py:89]
+2019-04-30 17:25:54,753 INFO: The application started [in /home/weiss/Documents/flask_mega_tutorial/flask_backend/app/__init__.py:89]
